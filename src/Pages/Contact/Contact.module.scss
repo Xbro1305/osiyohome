@@ -45,15 +45,11 @@
       }
     }
 
-    > label {
-      width: 50%;
-    }
-
     textarea {
       width: 100%;
       padding: 10px;
       max-width: 600px;
-      height: 318px;
+      height: 208px;
       border-radius: 10px;
       border: 1px solid var(--text-primary);
       resize: vertical;

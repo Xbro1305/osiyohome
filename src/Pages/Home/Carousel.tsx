@@ -23,7 +23,7 @@ export const Carousel = ({ items }: { items: any }) => {
     <Swiper
       ref={sliderRef}
       modules={[Pagination]}
-      spaceBetween={50}
+      spaceBetween={10}
       slidesPerView={3}
       breakpoints={{
         1440: {

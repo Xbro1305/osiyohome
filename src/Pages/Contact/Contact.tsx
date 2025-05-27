@@ -65,17 +65,19 @@ export const Contact = () => {
               onChange={(e) => setTheme(e.target.value)}
             />
           </label>
-          <input type="submit" value="Отправить" />
         </div>
-        <label>
-          <p>Сообшение</p>
-          <textarea
-            name="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            id=""
-          ></textarea>
-        </label>
+        <div className={styles.contact_top_left}>
+          <label>
+            <p>Сообшение</p>
+            <textarea
+              name="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              id=""
+            ></textarea>
+            <input type="submit" value="Отправить" />
+          </label>
+        </div>
       </form>
       <div className={styles.contacts}>
         <div className={styles.contacts_left}>
