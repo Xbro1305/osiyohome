@@ -140,4 +140,11 @@
       }
     }
   }
+
+  @media (max-width: 340px) {
+    &_links {
+      border-radius: 0;
+      right: 0;
+    }
+  }
 }
