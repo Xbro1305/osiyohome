@@ -27,6 +27,19 @@ export const CatalogItem = () => {
     return <div className={styles.error}>Товар не найден</div>;
   }
 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpened(false);
+
+    if (e.key === "ArrowRight" && opened !== false) {
+      const nextIndex = (Number(opened) + 1) % item.images.length;
+      setOpened(`${nextIndex}`);
+    } else if (e.key === "ArrowLeft" && opened !== false) {
+      const prevIndex =
+        (Number(opened) - 1 + item.images.length) % item.images.length;
+      setOpened(`${prevIndex}`);
+    }
+  });
+
   return (
     <div className={styles.item}>
       {opened && (
@@ -34,7 +47,20 @@ export const CatalogItem = () => {
           <button onClick={() => setOpened(false)}>
             <CgClose />
           </button>
-          <img src={opened} alt="" />
+          <img src={item.images[Number(opened)]} alt="" />
+          <section className={styles.item_opened_images}>
+            {item.images.map((image, index) => (
+              <img
+                onClick={() => setOpened(`${index}`)}
+                className={
+                  opened != `${index}` ? styles.item_opened_image_inactive : ""
+                }
+                key={index}
+                src={image}
+                alt={`Item ${item.art}`}
+              />
+            ))}
+          </section>
         </div>
       )}
       <Link to="/catalog" className={styles.back}>
@@ -44,7 +70,7 @@ export const CatalogItem = () => {
       <div className={styles.item_images}>
         {item.images.map((image, index) => (
           <img
-            onClick={() => setOpened(image)}
+            onClick={() => setOpened(`${index}`)}
             className={styles.item_image}
             key={index}
             src={image}
