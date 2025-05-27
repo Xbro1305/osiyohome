@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    font-family: "Inter", sans-serif;
 
     img {
       height: 60px;
@@ -23,6 +24,7 @@
 
     &_text {
       display: flex;
+      font-family: "Inter", sans-serif;
       flex-direction: column;
       font-weight: 600;
       font-size: 26px;

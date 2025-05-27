@@ -24,35 +24,26 @@ export const Home = () => {
   return (
     <div className={styles.home}>
       <div className={styles.home_slider}>
-        <Swiper spaceBetween={50} slidesPerView={1}>
-          <SwiperSlide>
-            <div className={styles.home_banner}>
-              <img src={banner1} alt="" />
-              <p>
-                Osiyo Home Textile -
-                <br /> Роскошь в мире постелей
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
+        {/* <Swiper spaceBetween={50} slidesPerView={1}> */}
+        {/* <SwiperSlide> */}
+        <div className={styles.home_banner}>
+          <img src={banner1} alt="" />
+          <p>Где начинается утро с комфорта, а ночь — с уюта</p>
+        </div>
+        {/* </SwiperSlide> */}
+        {/* <SwiperSlide>
             <div className={styles.home_banner}>
               <img src={banner3} alt="" />
-              <p>
-                Osiyo Home Textile -
-                <br /> Роскошь в мире постелей
-              </p>
+              <p>Где начинается утро с комфорта, а ночь — с уюта</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className={styles.home_banner}>
               <img src={banner2} alt="" />
-              <p>
-                Osiyo Home Textile -
-                <br /> Роскошь в мире постелей
-              </p>
+              <p>Где начинается утро с комфорта, а ночь — с уюта</p>
             </div>
-          </SwiperSlide>
-        </Swiper>
+          </SwiperSlide> */}
+        {/* </Swiper> */}
       </div>
       <div className={styles.home_categories}>
         <h1 className={styles.home_title}>Категории товаров</h1>
@@ -68,7 +59,7 @@ export const Home = () => {
           ) => (
             <div key={index} className={styles.home_categories_carousel}>
               <section>
-                <h2 className={styles.home_subtitle}>Гладкокрашеный</h2>
+                <h2 className={styles.home_subtitle}>{item.title}</h2>
                 <Link to={item.link}>
                   Перейти{" "}
                   <span>
@@ -243,7 +234,7 @@ export const Home = () => {
             style={{ background: "var(--gray)" }}
             onClick={() => setAdv(adv == 2 ? 0 : 2)}
           >
-            Производство
+            Производственные мощности
             <FaChevronDown
               style={{
                 transform: adv == 2 ? "rotate(180deg)" : "",
@@ -281,7 +272,7 @@ export const Home = () => {
             style={{ background: "var(--gray)" }}
             onClick={() => setAdv(adv == 3 ? 0 : 3)}
           >
-            Преимущества
+            Ассортимент и преимущества тканей
             <FaChevronDown
               style={{
                 transform: adv == 3 ? "rotate(180deg)" : "",
