@@ -15,6 +15,18 @@ body {
   font-family: "Bahnschrift", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button,
+select,
+input {
+  cursor: pointer;
+  outline: none;
+}
+
 :root {
   --bg-primary: #fff;
   --top-padding: 20px;

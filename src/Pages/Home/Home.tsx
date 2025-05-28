@@ -1,9 +1,5 @@
 import styles from "./Home.module.scss"; // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import banner1 from "../../assets/HomeBanners/home-banner1.jpg";
-import banner2 from "../../assets/HomeBanners/home-banner2.jpg";
-import banner3 from "../../assets/HomeBanners/home-banner3.jpg";
 import { Link } from "react-router-dom";
 import { FaArrowRight, FaChevronDown, FaTelegramPlane } from "react-icons/fa";
 import { data as items } from "../../data";
