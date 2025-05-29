@@ -74,7 +74,12 @@ export const CatalogItem = () => {
       </a>
       <h1 className={styles.item_title}>Артикул: {item.article}</h1>
       <div className={styles.item_info}>
-        <div className={styles.item_images}>
+        <div
+          className={styles.item_images}
+          style={{
+            gridTemplateColumns: item.img.length == 1 ? "repeat(1, 400px)" : "",
+          }}
+        >
           {item?.img?.map((image: any, index: number) => (
             <img
               onClick={() => setOpened(`${index}`)}
@@ -104,7 +109,7 @@ export const CatalogItem = () => {
           {item.type == 1 ? (
             <>
               {" "}
-              <h1>Название:{item.name}</h1>
+              <h1>Название: {item.name}</h1>
               <h2>Кол-во спален: {item.size}</h2>
               <h2>
                 Размер наволочек:{" "}
