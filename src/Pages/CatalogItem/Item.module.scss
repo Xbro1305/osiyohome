@@ -16,12 +16,37 @@
       cursor: pointer;
     }
 
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 820px) {
+      grid-template-columns: repeat(2, calc(50% - 10px));
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 450px) {
       grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &_info {
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 820px) {
+      flex-direction: column;
+    }
+  }
+
+  &_details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 500;
     }
   }
 
