@@ -91,6 +91,29 @@ export const Home = () => {
           <img src={infoblock2} alt="" />
         </figure>
       </div>
+      <div className={styles.home_companyAdv}>
+        <div className={styles.home_companyAdv_item}>
+          <BsClock />
+          <p>Быстрые выполнение закзов</p>
+          <span>
+            Современное оборудование и квалифицированные сотрудники позволяют
+            быстро завершить заказ
+          </span>
+        </div>
+        <div className={styles.home_companyAdv_item}>
+          <RxCheck />
+          <p>Высокое качество</p>
+          <span>
+            Мы используем только высококачественные материалы и современное
+            оборудование для производства нашей продукции
+          </span>
+        </div>
+        <div className={styles.home_companyAdv_item}>
+          <FiTruck />
+          <p>Доставка по всему миру</p>
+          <span>Доставка товара в больших тиражах по России и странам СНГ</span>
+        </div>
+      </div>
       <div className={styles.home_advantages}>
         <div className={styles.home_advantages_top}>
           <p
@@ -299,29 +322,6 @@ export const Home = () => {
               <img src={infoblock1} alt="" />
             </div>
           )}
-        </div>
-      </div>
-      <div className={styles.home_companyAdv}>
-        <div className={styles.home_companyAdv_item}>
-          <BsClock />
-          <p>Быстрые выполнение закзов</p>
-          <span>
-            Современное оборудование и квалифицированные сотрудники позволяют
-            быстро завершить заказ
-          </span>
-        </div>
-        <div className={styles.home_companyAdv_item}>
-          <RxCheck />
-          <p>Высокое качество</p>
-          <span>
-            Мы используем только высококачественные материалы и современное
-            оборудование для производства нашей продукции
-          </span>
-        </div>
-        <div className={styles.home_companyAdv_item}>
-          <FiTruck />
-          <p>Доставка по всему миру</p>
-          <span>Доставка товара в больших тиражах по России и странам СНГ</span>
         </div>
       </div>
       <div className={styles.home_contacts}>
