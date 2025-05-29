@@ -2,7 +2,6 @@ import styles from "./Item.module.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { CgClose } from "react-icons/cg";
 import axios from "axios";
 import { toast } from "react-toastify";

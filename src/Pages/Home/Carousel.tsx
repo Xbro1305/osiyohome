@@ -21,7 +21,6 @@ export const Carousel = ({ items }: { items: any }) => {
   }, []);
   return (
     <Swiper
-      style={{ padding: "25px" }}
       ref={sliderRef}
       modules={[Pagination]}
       spaceBetween={10}
