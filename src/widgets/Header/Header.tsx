@@ -27,13 +27,23 @@ export const Header = () => {
         >
           О компании
         </NavLink>
-        <NavLink
-          onClick={() => setOpen(false)}
+        <div
+          style={{ textAlign: "left", marginRight: "auto", padding: "10px" }}
           className="header_link"
-          to="/catalog"
         >
           Каталог
-        </NavLink>
+          <section>
+            <NavLink onClick={() => setOpen(false)} to={"/catalog/fabrics"}>
+              Ткани
+            </NavLink>
+            <NavLink
+              onClick={() => setOpen(false)}
+              to={"/catalog/bedding_sets"}
+            >
+              Комплекты постельного белья
+            </NavLink>
+          </section>
+        </div>
         <NavLink
           onClick={() => setOpen(false)}
           className="header_link"

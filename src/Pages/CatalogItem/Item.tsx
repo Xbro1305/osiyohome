@@ -1,30 +1,35 @@
 import styles from "./Item.module.scss";
-import { data as items } from "../../data";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { CgClose } from "react-icons/cg";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { Loader } from "../../widgets/Loader/Loader";
 
 export const CatalogItem = () => {
   const [opened, setOpened] = useState<string | false>(false);
 
   const { art } = useParams();
-  const [item, setItem] = useState<{ art: number; images: string[] } | null>(
-    null
-  );
+  const [item, setItem] = useState<any | null>(null);
+  const [loadin, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (art) {
-      const foundItem = items
-        .flatMap((category) => category.items)
-        .find((i) => i.art === parseInt(art));
-      setItem(foundItem || null);
-    }
+    axios(`${import.meta.env.VITE_APP_API_URL}/products/?article=${art}`)
+      .then((res) => setItem(res.data.innerData[0]))
+      .catch((err) => toast.error(err.response.data.msg))
+      .finally(() => setLoading(false));
   }, [art]);
 
   if (!item) {
-    return <div className={styles.error}>Товар не найден</div>;
+    return (
+      <div className={styles.error}>
+        Товар не найден
+        {loadin && <Loader />}
+      </div>
+    );
   }
 
   document.addEventListener("keydown", (e) => {
@@ -42,14 +47,16 @@ export const CatalogItem = () => {
 
   return (
     <div className={styles.item}>
+      {loadin && <Loader />}
+
       {opened && (
         <div className={styles.item_opened}>
           <button onClick={() => setOpened(false)}>
             <CgClose />
           </button>
-          <img src={item.images[Number(opened)]} alt="" />
+          <img src={item?.img[Number(opened)]} alt="" />
           <section className={styles.item_opened_images}>
-            {item.images.map((image, index) => (
+            {item.img.map((image: any, index: number) => (
               <img
                 onClick={() => setOpened(`${index}`)}
                 className={
@@ -57,18 +64,18 @@ export const CatalogItem = () => {
                 }
                 key={index}
                 src={image}
-                alt={`Item ${item.art}`}
+                alt={`Item ${item.article}`}
               />
             ))}
           </section>
         </div>
       )}
-      <Link to="/catalog" className={styles.back}>
+      <a onClick={() => navigate(-1)} className={styles.back}>
         <FaArrowLeft /> Назад к каталогу
-      </Link>
-      <h1 className={styles.item_title}>Артикул: {item.art}</h1>
+      </a>
+      <h1 className={styles.item_title}>Артикул: {item.article}</h1>
       <div className={styles.item_images}>
-        {item.images.map((image, index) => (
+        {item?.img?.map((image: any, index: number) => (
           <img
             onClick={() => setOpened(`${index}`)}
             className={styles.item_image}

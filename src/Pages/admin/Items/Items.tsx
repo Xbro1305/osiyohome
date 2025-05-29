@@ -42,11 +42,9 @@ export const AdminItems = () => {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => refresh(), 1000);
+    const timeout = setTimeout(() => refresh(), 500);
     return () => clearTimeout(timeout);
-  }, [article]);
-
-  useEffect(refresh, [type]);
+  }, [article, type]);
 
   return (
     <div className={styles.items}>
@@ -113,7 +111,10 @@ export const AdminItems = () => {
                   },
                   data: { ...value, img: files },
                 })
-                  .then((res) => toast.success(res.data.msg))
+                  .then((res) => {
+                    toast.success(res.data.msg);
+                    refresh();
+                  })
                   .catch((err) => toast.error(err.response.data.msg))
                   .finally(() => setLoading(false));
               }}
@@ -278,7 +279,10 @@ export const AdminItems = () => {
                   },
                   data: { ...value, img: files },
                 })
-                  .then((res) => toast.success(res.data.msg))
+                  .then((res) => {
+                    toast.success(res.data.msg);
+                    refresh();
+                  })
                   .catch((err) => toast.error(err.response.data.msg))
                   .finally(() => setLoading(false));
               }}

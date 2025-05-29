@@ -47,12 +47,14 @@ export const Carousel = ({ items }: { items: any }) => {
         clickable: true,
       }}
     >
-      {items.map((item: { art: number; images: string[]; link: string }) => (
+      {items?.map((item: { article: number; img: string[] }) => (
         <SwiperSlide>
-          <Link to={item.link} key={item.art}>
+          <Link to={`/catalog/item/${item.article}`} key={item.article}>
             <div className={styles.home_categories_item}>
-              <img src={item.images[0]} alt={`Item ${item.art}`} />
-              <p>Артикул: {item.art}</p>
+              {item.img && (
+                <img src={item?.img[0]} alt={`Item ${item.article}`} />
+              )}
+              <p>Артикул: {item.article}</p>
               <span>Подробнее</span>
             </div>
           </Link>

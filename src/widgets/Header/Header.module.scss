@@ -38,11 +38,38 @@
     align-items: center;
     gap: 20px;
 
-    a {
+    a,
+    div {
       color: var(--text-primary);
       text-decoration: none;
       font-weight: 600;
       font-size: 23px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+
+      section {
+        display: none;
+      }
+
+      &:hover {
+        section {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: fit-content;
+          white-space: nowrap;
+          background: #fff;
+          position: absolute;
+          top: 100%;
+          @media (max-width: 768px) {
+            position: relative;
+            white-space: wrap;
+          }
+        }
+      }
 
       &:hover {
         color: var(--text-secondary);

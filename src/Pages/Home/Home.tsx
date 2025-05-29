@@ -2,11 +2,10 @@ import styles from "./Home.module.scss"; // Import Swiper React components
 import banner1 from "../../assets/HomeBanners/home-banner1.jpg";
 import { Link } from "react-router-dom";
 import { FaArrowRight, FaChevronDown, FaTelegramPlane } from "react-icons/fa";
-import { data as items } from "../../data";
 import infoblock1 from "../../assets/infoblock_1.jpg";
 import infoblock2 from "../../assets/infoblock_2.jpg";
 import { Carousel } from "./Carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpg";
 import { BsClock, BsInstagram, BsYoutube } from "react-icons/bs";
 import { RxCheck } from "react-icons/rx";
@@ -14,59 +13,63 @@ import { FiTruck } from "react-icons/fi";
 import { MdLocationPin } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
+import axios from "axios";
+import { Loader } from "../../widgets/Loader/Loader";
 
 export const Home = () => {
+  const [news, setNews] = useState([]);
+  const [sets, setSets] = useState([]);
+  const [load, setLoad] = useState(true);
+  useEffect(() => {
+    axios(`${import.meta.env.VITE_APP_API_URL}/products?type=0`, {
+      data: { length: 10 },
+    })
+      .then((res) => setNews(res.data.innerData))
+      .catch((err) => console.log(err));
+    axios(`${import.meta.env.VITE_APP_API_URL}/products?type=1`, {
+      data: { length: 10 },
+    })
+      .then((res) => setSets(res.data.innerData))
+      .catch((err) => console.log(err))
+      .finally(() => setLoad(false));
+  }, []);
   const [adv, setAdv] = useState<0 | 1 | 2 | 3>(1);
   return (
     <div className={styles.home}>
+      {load && <Loader />}
       <div className={styles.home_slider}>
-        {/* <Swiper spaceBetween={50} slidesPerView={1}> */}
-        {/* <SwiperSlide> */}
         <div className={styles.home_banner}>
           <img src={banner1} alt="" />
           <p>Где начинается утро с комфорта, а ночь — с уюта</p>
         </div>
-        {/* </SwiperSlide> */}
-        {/* <SwiperSlide>
-            <div className={styles.home_banner}>
-              <img src={banner3} alt="" />
-              <p>Где начинается утро с комфорта, а ночь — с уюта</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={styles.home_banner}>
-              <img src={banner2} alt="" />
-              <p>Где начинается утро с комфорта, а ночь — с уюта</p>
-            </div>
-          </SwiperSlide> */}
-        {/* </Swiper> */}
       </div>
       <div className={styles.home_categories}>
-        <h1 className={styles.home_title}>Категории товаров</h1>
+        <h1 className={styles.home_title}>Новинки</h1>
 
-        {items.map(
-          (
-            item: {
-              title: string;
-              link: string;
-              items: { art: number; images: string[]; link: string }[];
-            },
-            index: number
-          ) => (
-            <div key={index} className={styles.home_categories_carousel}>
-              <section>
-                <h2 className={styles.home_subtitle}>{item.title}</h2>
-                <Link to={item.link}>
-                  Перейти{" "}
-                  <span>
-                    <FaArrowRight />
-                  </span>
-                </Link>
-              </section>
-              <Carousel items={item.items} />
-            </div>
-          )
-        )}
+        <div className={styles.home_categories_carousel}>
+          <section>
+            <h2 className={styles.home_subtitle}>Свежие ткани</h2>
+            <Link to="/catalog/fabrics">
+              Перейти{" "}
+              <span>
+                <FaArrowRight />
+              </span>
+            </Link>
+          </section>
+          <Carousel items={news} />
+        </div>
+        <div className={styles.home_categories_carousel}>
+          <section>
+            <h2 className={styles.home_subtitle}>Свежие комплекты</h2>
+            <Link to="/catalog/bedding-sets">
+              Перейти{" "}
+              <span>
+                <FaArrowRight />
+              </span>
+            </Link>
+          </section>
+          <Carousel items={sets} />
+        </div>
       </div>
       <div className={styles.home_infoBlock}>
         <section>
@@ -87,12 +90,6 @@ export const Home = () => {
           <img src={infoblock1} alt="" />
           <img src={infoblock2} alt="" />
         </figure>
-      </div>
-      <div className={styles.home_new_items}>
-        <h1 className={styles.home_title}>Новинки</h1>
-        <div className={styles.home_new_items_list}>
-          <Carousel items={items[1].items} />
-        </div>
       </div>
       <div className={styles.home_advantages}>
         <div className={styles.home_advantages_top}>

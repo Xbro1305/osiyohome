@@ -25,7 +25,7 @@ export const Router = () => {
             <Route path="/" index element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contacts" element={<Contact />} />
-            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/catalog/:type" element={<Catalog />} />
             <Route
               path="/catalog/category/:category"
               element={<CatalogCategory />}
