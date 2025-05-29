@@ -35,11 +35,11 @@ export const CatalogItem = () => {
     if (e.key === "Escape") setOpened(false);
 
     if (e.key === "ArrowRight" && opened !== false) {
-      const nextIndex = (Number(opened) + 1) % item.images.length;
+      const nextIndex = (Number(opened) + 1) % item.img.length;
       setOpened(`${nextIndex}`);
     } else if (e.key === "ArrowLeft" && opened !== false) {
       const prevIndex =
-        (Number(opened) - 1 + item.images.length) % item.images.length;
+        (Number(opened) - 1 + item.img.length) % item.img.length;
       setOpened(`${prevIndex}`);
     }
   });
@@ -73,16 +73,57 @@ export const CatalogItem = () => {
         <FaArrowLeft /> Назад к каталогу
       </a>
       <h1 className={styles.item_title}>Артикул: {item.article}</h1>
-      <div className={styles.item_images}>
-        {item?.img?.map((image: any, index: number) => (
-          <img
-            onClick={() => setOpened(`${index}`)}
-            className={styles.item_image}
-            key={index}
-            src={image}
-            alt={`Item ${item.art}`}
-          />
-        ))}
+      <div className={styles.item_info}>
+        <div className={styles.item_images}>
+          {item?.img?.map((image: any, index: number) => (
+            <img
+              onClick={() => setOpened(`${index}`)}
+              className={styles.item_image}
+              key={index}
+              src={image}
+              alt={`Item ${item.art}`}
+            />
+          ))}
+        </div>
+        <div className={styles.item_details}>
+          {/* //   {
+  //     _id: "6837fc1905a8d5c2500ba1ee",
+  //     "name": "что-то",
+  //     "img": [""],
+  //     "type": 1,
+  //     "size": "2",
+  //     "categoryId": 4,
+  //     "article": 7,
+  //     "duvetCoverSize": "150x100",
+  //     "pillowcases": "2",
+  //     "bedsheetSize": "200x200",
+  //     "pillowcaseSize": "50x70",
+  //     "madein": "Узбекистан",
+  //     "__v": 0
+  // }, */}
+          {item.type == 1 ? (
+            <>
+              {" "}
+              <h1>Название:{item.name}</h1>
+              <h2>Кол-во спален: {item.size}</h2>
+              <h2>
+                Размер наволочек:{" "}
+                {`${item.pillowcaseSize} (${item.pillowcases}шт)`}
+              </h2>
+              <h2>Размер простыни: {item.bedsheetSize}</h2>
+              <h2>Размер пододеяльника: {item.duvetCoverSize}</h2>
+              <h2>Материал: {item.duvetCoverSize}</h2>
+              <h2>Размер пододеяльника: {item.duvetCoverSize}</h2>
+              <h2>Страна производитель: {item.madein}</h2>
+            </>
+          ) : (
+            <>
+              <h2>Ширина ткани: {item.width}см.</h2>
+              <h2>Длина ткани: Под заказ</h2>
+              <h2>Граммовка: {item.weight}</h2>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

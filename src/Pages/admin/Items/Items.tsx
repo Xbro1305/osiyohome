@@ -271,14 +271,19 @@ export const AdminItems = () => {
                 const value = Object.fromEntries(data);
 
                 e.preventDefault();
-                axios(`${import.meta.env.VITE_APP_API_URL}/products/update`, {
-                  method: "PATCH",
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                  },
-                  data: { ...value, img: files },
-                })
+                axios(
+                  `${import.meta.env.VITE_APP_API_URL}/products/update/${
+                    editing._id
+                  }`,
+                  {
+                    method: "PATCH",
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
+                      "Content-Type": "application/json",
+                    },
+                    data: { ...value, img: files },
+                  }
+                )
                   .then((res) => {
                     toast.success(res.data.msg);
                     refresh();
@@ -290,7 +295,12 @@ export const AdminItems = () => {
               <h1>Редактирование товара</h1>
               <label>
                 <p>Название</p>
-                <input defaultValue={editing.name} type="text" name="name" />
+                <input
+                  required
+                  defaultValue={editing.name}
+                  type="text"
+                  name="name"
+                />
               </label>
               <label className={styles.modal_photoLabel}>
                 <p>Фото</p>
@@ -342,6 +352,7 @@ export const AdminItems = () => {
                 <p>Тип товара</p>
                 <select
                   onChange={(e) => setCreatingType(e.target.value)}
+                  value={creatingType}
                   name="type"
                 >
                   <option value={0}>Ткань</option>
@@ -352,7 +363,7 @@ export const AdminItems = () => {
                 <p>Категория</p>
                 {creatingType == "0" ? (
                   <select
-                    defaultValue={editing.applies_to}
+                    defaultValue={editing.categoryId}
                     name="categoryId"
                     id=""
                   >
@@ -377,80 +388,88 @@ export const AdminItems = () => {
                 )}
               </label>
               {creatingType == "0" && (
-                <label>
-                  <p>Ширина ткани</p>
-                  <input
-                    type="text"
-                    name="width"
-                    defaultValue={editing.width}
-                  />
-                </label>
-              )}
-              {creatingType == "0" && (
-                <label>
-                  <p>Граммовка</p>
-                  <input
-                    type="text"
-                    name="weight"
-                    defaultValue={editing.weight}
-                  />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер постели</p>
-                  <input type="text" name="size" defaultValue={editing.size} />
-                </label>
+                <>
+                  <label>
+                    <p>Ширина ткани</p>
+                    <input
+                      required
+                      type="text"
+                      name="width"
+                      defaultValue={editing.width}
+                    />
+                  </label>
+
+                  <label>
+                    <p>Граммовка</p>
+                    <input
+                      required
+                      type="text"
+                      name="weight"
+                      defaultValue={editing.weight}
+                    />
+                  </label>
+                </>
               )}
               {creatingType == "1" && (
-                <label>
-                  <p>Кол-во наволочек </p>
-                  <input
-                    type="text"
-                    name="pillowcases"
-                    defaultValue={editing.pillowcases}
-                  />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер наволочки </p>
-                  <input
-                    type="text"
-                    name="pillowcaseSize"
-                    defaultValue={editing.pillowcaseSize}
-                  />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер простыни </p>
-                  <input
-                    type="text"
-                    name="bedsheetSize"
-                    defaultValue={editing.bedsheetSize}
-                  />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер пододеяльника </p>
-                  <input
-                    type="text"
-                    name="duvetCoverSize"
-                    defaultValue={editing.duvetCoverSize}
-                  />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Страна производитель </p>
-                  <input
-                    type="text"
-                    name="madein"
-                    defaultValue={editing.madein}
-                  />
-                </label>
+                <>
+                  <label>
+                    <p>Размер постели</p>
+                    <input
+                      required
+                      type="text"
+                      name="size"
+                      defaultValue={editing.size}
+                    />
+                  </label>
+
+                  <label>
+                    <p>Кол-во наволочек </p>
+                    <input
+                      required
+                      type="text"
+                      name="pillowcases"
+                      defaultValue={editing.pillowcases}
+                    />
+                  </label>
+
+                  <label>
+                    <p>Размер наволочки </p>
+                    <input
+                      required
+                      type="text"
+                      name="pillowcaseSize"
+                      defaultValue={editing.pillowcaseSize}
+                    />
+                  </label>
+
+                  <label>
+                    <p>Размер простыни </p>
+                    <input
+                      required
+                      type="text"
+                      name="bedsheetSize"
+                      defaultValue={editing.bedsheetSize}
+                    />
+                  </label>
+                  <label>
+                    <p>Размер пододеяльника </p>
+                    <input
+                      required
+                      type="text"
+                      name="duvetCoverSize"
+                      defaultValue={editing.duvetCoverSize}
+                    />
+                  </label>
+                  <label>
+                    <p>Страна производитель </p>
+                    <input
+                      required
+                      type="text"
+                      name="madein"
+                      defaultValue={editing.madein}
+                    />
+                  </label>
+                </>
               )}
               <section>
                 <button
