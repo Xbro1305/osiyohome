@@ -44,7 +44,7 @@ export const AdminItems = () => {
   useEffect(() => {
     const timeout = setTimeout(() => refresh(), 500);
     return () => clearTimeout(timeout);
-  }, [article, type]);
+  }, [article]);
 
   return (
     <div className={styles.items}>
@@ -59,7 +59,27 @@ export const AdminItems = () => {
             onChange={(e) => setArticle(e.target.value)}
             placeholder="Артикул"
           />
-          <select name="type" id="" onChange={(e) => setType(e.target.value)}>
+          <select
+            name="type"
+            id=""
+            onChange={(e) => {
+              setType(e.target.value);
+              setLoading(true);
+              const query = new URLSearchParams();
+              if (article) query.append("article", article);
+              query.append("type", e.target.value);
+
+              const url = `${
+                import.meta.env.VITE_APP_API_URL
+              }/products?${query.toString()}`;
+
+              axios
+                .get(url)
+                .then((res) => setData(res.data.innerData))
+                .catch((err) => toast.error(err.response?.data?.msg || "Error"))
+                .finally(() => setLoading(false));
+            }}
+          >
             <option value="0">Ткани</option>
             <option value="1">КПБ</option>
           </select>

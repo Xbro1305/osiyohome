@@ -11,6 +11,7 @@ export const Catalog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const baseUrl = import.meta.env.VITE_APP_API_URL;
     const url =
       type == "fabrics"
@@ -21,7 +22,7 @@ export const Catalog = () => {
       .then((res) => setData(res.data.innerData))
       .catch((err) => toast.error(err.response.data.msg))
       .finally(() => setLoading(false));
-  }, []);
+  }, [type]);
 
   return (
     <div className={styles.catalog}>

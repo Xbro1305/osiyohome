@@ -125,7 +125,7 @@ export const CatalogItem = () => {
             <>
               <h2>Ширина ткани: {item.width}см.</h2>
               <h2>Длина ткани: Под заказ</h2>
-              <h2>Граммовка: {item.weight}</h2>
+              <h2>Граммовка: {item.weight} г/м²</h2>
             </>
           )}
         </div>
