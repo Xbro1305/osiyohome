@@ -34,9 +34,9 @@ export const Router = () => {
             <Route path="/admin/login" element={<Login />} />
           </Route>
           <Route element={<AdminLayout />}>
-            <Route path="/admin" element={<Navigator />} />
-            <Route path="/admin/items" element={<AdminItems />} />
-            <Route path="/admin/categories" element={<AdminCategories />} />
+            <Route path="/adin" element={<Navigator />} />
+            <Route path="/adm/items" element={<AdminItems />} />
+            <Route path="/adm/categories" element={<AdminCategories />} />
           </Route>
         </Routes>
       </BrowserRouter>
