@@ -28,7 +28,7 @@ export const Login = () => {
             .then((res) => {
               toast.success(res.data.msg);
               localStorage.setItem("token", res.data.token);
-              navigate("/admin");
+              navigate("/adm");
             })
             .catch((err) => toast.error(err.response.data.msg))
             .finally(() => setLoading(false));
