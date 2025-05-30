@@ -1,4 +1,4 @@
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Outlet, Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Header } from "./widgets/Header/Header";
 import { Home } from "./Pages/Home/Home";
@@ -32,6 +32,23 @@ export const Router = () => {
             />{" "}
             <Route path="/catalog/item/:art" element={<CatalogItem />} />
             <Route path="/admin/login" element={<Login />} />
+            <Route
+              path="*"
+              element={
+                <div
+                  style={{
+                    padding: "50px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <h1>Page not found</h1>
+                  <Link to="/">Go home</Link>
+                </div>
+              }
+            />
           </Route>
           <Route element={<AdminLayout />}>
             <Route path="/admin" element={<Navigator />} />
