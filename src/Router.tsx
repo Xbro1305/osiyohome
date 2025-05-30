@@ -31,12 +31,12 @@ export const Router = () => {
               element={<CatalogCategory />}
             />{" "}
             <Route path="/catalog/item/:art" element={<CatalogItem />} />
-            <Route path="/adm/login" element={<Login />} />
+            <Route path="/admin/login" element={<Login />} />
           </Route>
           <Route element={<AdminLayout />}>
-            <Route path="/adm" element={<Navigator />} />
-            <Route path="/adm/items" element={<AdminItems />} />
-            <Route path="/adm/categories" element={<AdminCategories />} />
+            <Route path="/admin" element={<Navigator />} />
+            <Route path="/admin/items" element={<AdminItems />} />
+            <Route path="/admin/categories" element={<AdminCategories />} />
           </Route>
         </Routes>
       </BrowserRouter>
