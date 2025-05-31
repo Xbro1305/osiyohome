@@ -43,40 +43,41 @@ export const Home = () => {
           <p>Где начинается утро с комфорта, а ночь — с уюта</p>
         </div>
       </div>
-      {sets.length != 0 && news.length != 0 && (
-        <div className={styles.home_categories}>
-          <h1 className={styles.home_title}>Новинки</h1>
+      {sets.length != 0 ||
+        (news.length != 0 && (
+          <div className={styles.home_categories}>
+            <h1 className={styles.home_title}>Новинки</h1>
 
-          {news.length != 0 && (
-            <div className={styles.home_categories_carousel}>
-              <section>
-                <h2 className={styles.home_subtitle}>Свежие ткани</h2>
-                <Link to="/catalog/fabrics">
-                  Перейти
-                  <span>
-                    <FaArrowRight />
-                  </span>
-                </Link>
-              </section>
-              <Carousel items={news} />
-            </div>
-          )}
-          {sets.length != 0 && (
-            <div className={styles.home_categories_carousel}>
-              <section>
-                <h2 className={styles.home_subtitle}>Свежие комплекты</h2>
-                <Link to="/catalog/bedding-sets">
-                  Перейти
-                  <span>
-                    <FaArrowRight />
-                  </span>
-                </Link>
-              </section>
-              <Carousel items={sets} />
-            </div>
-          )}
-        </div>
-      )}
+            {news.length != 0 && (
+              <div className={styles.home_categories_carousel}>
+                <section>
+                  <h2 className={styles.home_subtitle}>Свежие ткани</h2>
+                  <Link to="/catalog/fabrics">
+                    Перейти
+                    <span>
+                      <FaArrowRight />
+                    </span>
+                  </Link>
+                </section>
+                <Carousel items={news} />
+              </div>
+            )}
+            {sets.length != 0 && (
+              <div className={styles.home_categories_carousel}>
+                <section>
+                  <h2 className={styles.home_subtitle}>Свежие комплекты</h2>
+                  <Link to="/catalog/bedding-sets">
+                    Перейти
+                    <span>
+                      <FaArrowRight />
+                    </span>
+                  </Link>
+                </section>
+                <Carousel items={sets} />
+              </div>
+            )}
+          </div>
+        ))}
 
       <div className={styles.home_infoBlock}>
         <section>
