@@ -3,6 +3,8 @@ import logo from "../../assets/logo.jpg";
 import infoblock1 from "../../assets/infoblock_1.jpg";
 import infoblock2 from "../../assets/infoblock_2.jpg";
 import infoblock3 from "../../assets/infoblock3.webp";
+import infoblock4 from "../../assets/odnotonniy.webp";
+import infoblock5 from "../../assets/pechat.jpg";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { runIntersectionAnimation } from "../../widgets/Animation";
@@ -70,6 +72,20 @@ export const About = () => {
           />
         </p>
         <img className="element-animation el" src={infoblock1} alt="" />
+      </div>
+      <div className={styles.about_item}>
+        <p
+          className="element-animation er"
+          dangerouslySetInnerHTML={{ __html: t("infoblock4") }}
+        />
+        <img className="element-animation el" src={infoblock4} alt="" />
+      </div>
+      <div className={styles.about_item}>
+        <p
+          className="element-animation er"
+          dangerouslySetInnerHTML={{ __html: t("infoblock5") }}
+        />
+        <img className="element-animation el" src={infoblock5} alt="" />
       </div>
     </div>
   );
