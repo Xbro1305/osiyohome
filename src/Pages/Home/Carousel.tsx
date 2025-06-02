@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Swiper } from "swiper/react";
@@ -6,9 +6,19 @@ import { Pagination } from "swiper/modules";
 import { SwiperSlide, type SwiperClass } from "swiper/react";
 import styles from "./Home.module.scss";
 import "swiper/css";
+import { useTranslation } from "react-i18next";
+import { runIntersectionAnimation } from "../../widgets/Animation";
 
 export const Carousel = ({ items }: { items: any }) => {
   const sliderRef = useRef<{ swiper: SwiperClass } | null>(null);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (items)
+      setTimeout(() => {
+        runIntersectionAnimation();
+      }, 100);
+  }, [items]);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -21,6 +31,7 @@ export const Carousel = ({ items }: { items: any }) => {
   }, []);
   return (
     <Swiper
+      className="element-animation"
       ref={sliderRef}
       modules={[Pagination]}
       spaceBetween={10}
@@ -51,10 +62,16 @@ export const Carousel = ({ items }: { items: any }) => {
           <Link to={`/catalog/item/${item.article}`} key={item.article}>
             <div className={styles.home_categories_item}>
               {item.img && (
-                <img src={item?.img[0]} alt={`Item ${item.article}`} />
+                <img
+                  loading="lazy"
+                  src={item?.img[0]}
+                  alt={`Item ${item.article}`}
+                />
               )}
-              <p>Артикул: {item.article}</p>
-              <span>Подробнее</span>
+              <p>
+                {t("article")}: {item.article}
+              </p>
+              <span>{t("goTo")}</span>
             </div>
           </Link>
         </SwiperSlide>

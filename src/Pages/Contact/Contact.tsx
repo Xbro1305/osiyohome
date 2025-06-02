@@ -8,6 +8,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import { TfiEmail } from "react-icons/tfi";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { runIntersectionAnimation } from "../../widgets/Animation";
 
 export const Contact = () => {
   const [name, setName] = useState<string>("");
@@ -15,8 +17,16 @@ export const Contact = () => {
   const [theme, setTheme] = useState<string>("");
   const [text, setText] = useState<string>("");
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     emailjs.init("RZZxM8VbiJBQE2jC2");
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      runIntersectionAnimation();
+    }, 100);
   }, []);
 
   const send = (e: FormEvent) => {
@@ -41,24 +51,24 @@ export const Contact = () => {
     <div className={styles.contact}>
       <form onSubmit={(e) => send(e)} className={styles.contact_top}>
         <div className={styles.contact_top_left}>
-          <label>
-            <p>Ваше имя:</p>
+          <label className="element-animation">
+            <p>{t("yourName")}</p>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </label>{" "}
-          <label>
-            <p>Ваша почта:</p>
+          <label className="element-animation el">
+            <p>{t("yourEmail")}</p>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>{" "}
-          <label>
-            <p>Тема Вопроса:</p>
+          <label className="element-animation eb">
+            <p>{t("questionSubject")}</p>
             <input
               type="text"
               value={theme}
@@ -67,37 +77,47 @@ export const Contact = () => {
           </label>
         </div>
         <div className={styles.contact_top_left}>
-          <label>
-            <p>Сообшение</p>
+          <label className="element-animation er">
+            <p>{t("message")}</p>
             <textarea
               name="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
               id=""
             ></textarea>
-            <input type="submit" value="Отправить" />
           </label>
+          <input
+            className="element-animation eb"
+            type="submit"
+            value={t("send")}
+          />
         </div>
       </form>
       <div className={styles.contacts}>
         <div className={styles.contacts_left}>
-          <h1 className={styles.title}>Контакты</h1>
-          <p>
+          <h1 className={`element-animation ${styles.contacts_title}`}>
+            {t("contacts")}
+          </h1>
+          <p className="element-animation el">
             <MdLocationPin />
-            Наманганская область, город Наманган, Раустан МСГ, улица Дустлик, 7
+            {t("address")}
           </p>
-          <section>
-            <Link to="tel:+998911783333">
+          <section className="element-animation el">
+            <Link to="tel:+998907520033">
               <BiPhone />
-              +998 911783333
+              +998 907520033
+            </Link>
+            <Link to="tel:+998906950033">
+              <BiPhone />
+              +998 906950033
             </Link>
             <Link to="tel:+998911801311">
               <BiPhone />
               +998 911801311
             </Link>
           </section>
-          <section>
-            <span>Мы в социальных сетях:</span>
+          <section className="element-animation eb">
+            <span>{t("socialMedia")}</span>
             <Link to="https://t.me/OsiyoHomeTex1" target="_blank">
               <FaTelegramPlane /> @OsiyoHomeTex1
             </Link>
@@ -112,9 +132,12 @@ export const Contact = () => {
               <TfiEmail /> osiyotex@gmail.com
             </Link>
           </section>
-          <p>© 2017–{new Date().getFullYear()} OOO "Osiyo Home Textile"</p>
+          <p className="element-animation eb">
+            © 2017–{new Date().getFullYear()} {t("companyName")}
+          </p>
         </div>
         <iframe
+          className="element-animation eb"
           src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6023.930386428343!2d71.606341!3d40.982243!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDU4JzU2LjEiTiA3McKwMzYnMjIuOCJF!5e0!3m2!1sru!2sus!4v1748340661772!5m2!1sru!2sus"
           width="600"
           height="450"

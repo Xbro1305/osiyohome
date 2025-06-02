@@ -6,10 +6,12 @@ import { CgClose } from "react-icons/cg";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Loader } from "../../widgets/Loader/Loader";
+import { useTranslation } from "react-i18next";
+import { runIntersectionAnimation } from "../../widgets/Animation";
 
 export const CatalogItem = () => {
   const [opened, setOpened] = useState<string | false>(false);
-
+  const { t } = useTranslation();
   const { art } = useParams();
   const [item, setItem] = useState<any | null>(null);
   const [loadin, setLoading] = useState(true);
@@ -22,7 +24,14 @@ export const CatalogItem = () => {
       .finally(() => setLoading(false));
   }, [art]);
 
-  if (!item) {
+  useEffect(() => {
+    if (!loadin)
+      setTimeout(() => {
+        runIntersectionAnimation();
+      }, 100);
+  }, [loadin]);
+
+  if (!item && !loadin) {
     return (
       <div className={styles.error}>
         Товар не найден
@@ -55,7 +64,7 @@ export const CatalogItem = () => {
           </button>
           <img src={item?.img[Number(opened)]} alt="" />
           <section className={styles.item_opened_images}>
-            {item.img.map((image: any, index: number) => (
+            {item?.img?.map((image: any, index: number) => (
               <img
                 onClick={() => setOpened(`${index}`)}
                 className={
@@ -69,63 +78,81 @@ export const CatalogItem = () => {
           </section>
         </div>
       )}
-      <a onClick={() => navigate(-1)} className={styles.back}>
-        <FaArrowLeft /> Назад к каталогу
+      <a onClick={() => navigate(-1)}>
+        <h1
+          style={{
+            fontSize: "24px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          }}
+          className="element-animation el"
+        >
+          <FaArrowLeft /> {t("backToCatalog")}
+        </h1>
       </a>
-      <h1 className={styles.item_title}>Артикул: {item.article}</h1>
+      <h1 className={`element-animation el`}>
+        {t("article")}: {item?.article}
+      </h1>
       <div className={styles.item_info}>
         <div
           className={styles.item_images}
           style={{
-            gridTemplateColumns: item.img.length == 1 ? "repeat(1, 400px)" : "",
+            gridTemplateColumns:
+              item?.img?.length == 1 ? "repeat(1, 400px)" : "",
           }}
         >
           {item?.img?.map((image: any, index: number) => (
             <img
               onClick={() => setOpened(`${index}`)}
-              className={styles.item_image}
+              className={`element-animation  ${styles.item_image}`}
               key={index}
               src={image}
               alt={`Item ${item.art}`}
             />
           ))}
         </div>
-        <div className={styles.item_details}>
-          {/* //   {
-  //     _id: "6837fc1905a8d5c2500ba1ee",
-  //     "name": "что-то",
-  //     "img": [""],
-  //     "type": 1,
-  //     "size": "2",
-  //     "categoryId": 4,
-  //     "article": 7,
-  //     "duvetCoverSize": "150x100",
-  //     "pillowcases": "2",
-  //     "bedsheetSize": "200x200",
-  //     "pillowcaseSize": "50x70",
-  //     "madein": "Узбекистан",
-  //     "__v": 0
-  // }, */}
-          {item.type == 1 ? (
+        <div className={`element-animation er ${styles.item_details}`}>
+          {item?.type == 1 ? (
             <>
-              {" "}
-              <h1>Название: {item.name}</h1>
-              <h2>Кол-во спален: {item.size}</h2>
+              <h1>
+                {t("productName")} {item.name}
+              </h1>
               <h2>
-                Размер наволочек:{" "}
-                {`${item.pillowcaseSize} (${item.pillowcases}шт)`}
+                {t("bedroomsCount")} {item.size}
               </h2>
-              <h2>Размер простыни: {item.bedsheetSize}</h2>
-              <h2>Размер пододеяльника: {item.duvetCoverSize}</h2>
-              <h2>Материал: {item.duvetCoverSize}</h2>
-              <h2>Размер пододеяльника: {item.duvetCoverSize}</h2>
-              <h2>Страна производитель: {item.madein}</h2>
+              <h2>
+                {t("pillowcaseSize")}
+                {`${item.pillowcaseSize} (${item.pillowcases}${t(
+                  "pillowcaseCountUnit"
+                )})`}
+              </h2>
+              <h2>
+                {t("sheetSize")} {item.bedsheetSize}
+              </h2>
+              <h2>
+                {t("duvetCoverSize")} {item.duvetCoverSize}
+              </h2>
+              <h2>
+                {t("material")} {item?.cloth}
+              </h2>
+              <h2>
+                {t("countryOfOrigin")} {t("countryName")}
+              </h2>
             </>
           ) : (
             <>
-              <h2>Ширина ткани: {item.width}см.</h2>
-              <h2>Длина ткани: Под заказ</h2>
-              <h2>Граммовка: {item.weight} г/м²</h2>
+              <h2>
+                {t("fabricWidth_label")} {item?.width}
+                {t("fabricWidth_unit")}
+              </h2>
+              <h2>
+                {t("fabricLength_label")} {t("fabricLength_value")}
+              </h2>
+              <h2>
+                {t("fabricWeight_label")} {item?.weight}{" "}
+                {t("fabricWeight_value")}
+              </h2>
             </>
           )}
         </div>

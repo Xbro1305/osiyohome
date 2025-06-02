@@ -4,7 +4,7 @@
   padding: var(--top-padding) var(--sides-padding);
   gap: 30px;
 
-  > :nth-child(2) {
+  > :nth-child(even) {
     display: flex;
     flex-direction: row-reverse;
 

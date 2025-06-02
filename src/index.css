@@ -105,3 +105,32 @@ textarea {
 .prev-arrow {
   left: -10px;
 }
+
+.element-animation {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 0.8s ease;
+}
+
+.element-animation.el {
+  transform: translateY(0) translateX(-40px);
+}
+
+.element-animation.er {
+  transform: translateY(0) translateX(40px);
+}
+
+.element-animation.eb {
+  transform: translateY(40px);
+}
+
+.element-animation.es {
+  transform: scale(0.6);
+}
+
+.element-animation.element-show {
+  opacity: 1;
+  transition: all 0.8s;
+  transition-delay: 0.4s;
+  transform: translateY(0) scale(1);
+}

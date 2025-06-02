@@ -83,7 +83,12 @@ export const AdminItems = () => {
             <option value="0">Ткани</option>
             <option value="1">КПБ</option>
           </select>
-          <button onClick={() => setIsOpen(true)}>
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              setCreatingType("0");
+            }}
+          >
             + Добавить новый товар
           </button>
         </section>
@@ -221,53 +226,48 @@ export const AdminItems = () => {
                 )}
               </label>
               {creatingType == "0" && (
-                <label>
-                  <p>Ширина ткани</p>
-                  <input type="text" name="width" />
-                </label>
-              )}
-              {creatingType == "0" && (
-                <label>
-                  <p>Граммовка</p>
-                  <input type="text" name="weight" />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер постели</p>
-                  <input type="text" name="size" />
-                </label>
+                <>
+                  <label>
+                    <p>Ширина ткани</p>
+                    <input type="text" name="width" />
+                  </label>
+
+                  <label>
+                    <p>Граммовка</p>
+                    <input type="text" name="weight" />
+                  </label>
+                </>
               )}
               {creatingType == "1" && (
-                <label>
-                  <p>Кол-во наволочек </p>
-                  <input type="text" name="pillowcases" />
-                </label>
+                <>
+                  <label>
+                    <p>Размер постели</p>
+                    <input type="text" name="size" />
+                  </label>
+                  <label>
+                    <p>Кол-во наволочек </p>
+                    <input type="text" name="pillowcases" />
+                  </label>
+                  <label>
+                    <p>Размер наволочки </p>
+                    <input type="text" name="pillowcaseSize" />
+                  </label>
+                  <label>
+                    <p>Размер простыни </p>
+                    <input type="text" name="bedsheetSize" />
+                  </label>
+                  <label>
+                    <p>Размер пододеяльника </p>
+                    <input type="text" name="duvetCoverSize" />
+                  </label>
+                </>
               )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер наволочки </p>
-                  <input type="text" name="pillowcaseSize" />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер простыни </p>
-                  <input type="text" name="bedsheetSize" />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Размер пододеяльника </p>
-                  <input type="text" name="duvetCoverSize" />
-                </label>
-              )}
-              {creatingType == "1" && (
-                <label>
-                  <p>Страна производитель </p>
-                  <input type="text" name="madein" />
-                </label>
-              )}
+
+              <label>
+                <p>Материал </p>
+                <input type="text" name="cloth" />
+              </label>
+
               <button type="submit">Отправить</button>
             </form>
           </div>
@@ -480,17 +480,17 @@ export const AdminItems = () => {
                       defaultValue={editing.duvetCoverSize}
                     />
                   </label>
-                  <label>
-                    <p>Страна производитель </p>
-                    <input
-                      required
-                      type="text"
-                      name="madein"
-                      defaultValue={editing.madein}
-                    />
-                  </label>
                 </>
               )}
+              <label>
+                <p>Материал </p>
+                <input
+                  required
+                  type="text"
+                  name="cloth"
+                  defaultValue={editing.cloth}
+                />
+              </label>
               <section>
                 <button
                   type="button"

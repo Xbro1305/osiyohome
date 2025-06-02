@@ -2,65 +2,74 @@ import styles from "./About.module.scss";
 import logo from "../../assets/logo.jpg";
 import infoblock1 from "../../assets/infoblock_1.jpg";
 import infoblock2 from "../../assets/infoblock_2.jpg";
+import infoblock3 from "../../assets/infoblock3.webp";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { runIntersectionAnimation } from "../../widgets/Animation";
 
 export const About = () => {
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      runIntersectionAnimation();
+    }, 100);
+  }, []);
+
   return (
     <div className={styles.about}>
-      <div className={styles.about_item}>
-        <p>
-          ООО «OSIYO HOME TEX» — это текстильное предприятие, специализирующееся
-          на производстве хлопчатобумажной ткани для изготовления постельного
-          белья и текстильных комплектов. <br />
+      <div className={` ${styles.about_item}`}>
+        <p className="element-animation el">
+          {t("companyDescription_1")}
           <br />
-          Компания ведёт свою деятельность на территории Наманганской области в
-          собственных производственных помещениях, что обеспечивает полный
-          контроль над качеством на всех этапах выпуска продукции. <br />
-          <br /> Мы используем современное оборудование ведущих мировых
-          производителей, что позволяет нам выпускать продукцию, соответствующую
-          международным стандартам качества и удовлетворяющую потребности даже
-          самых требовательных клиентов.
+          <br />
+          {t("companyDescription_2")}
+          <br />
+          <br />
+          {t("companyDescription_3")}
         </p>
-        <img src={logo} alt="" />
+        <img className="element-animation er" src={logo} alt="" />
       </div>
       <div className={styles.about_item}>
-        <p>
-          Производственная база предприятия позволяет выпускать до
-          <b>12 000 погонных метров ткани в сутки.</b> <br />
+        <p className="element-animation er">
+          {t("cottonYarnProduction")} <br />
           <br />
-          <b> 🔧 Основные параметры выпускаемой продукции:</b>
-          <ul>
-            <li>Ширина ткани: от 160 см до 240 см </li>
-            <li>Поверхностная плотность: от 100 г/м² до 250 г/м²</li>
-          </ul>
-          <br />
-          Наше оборудование и квалифицированный персонал обеспечивают стабильное
-          качество и высокую производительность, благодаря чему мы можем
-          выполнять как стандартные, так и индивидуальные заказы в короткие
-          сроки.
         </p>
-        <img src={infoblock2} alt="" />
+        <img className="element-animation el" src={infoblock3} alt="" />
       </div>
       <div className={styles.about_item}>
-        <p>
-          Мы предлагаем хлопчатобумажные ткани следующих видов:
-          <ul>
-            <li>Поплин</li>
-            <li>Ранфорс (Ромфорс)</li>
-            <li>Сатин</li>
-            <li>Страйп-сатин </li>
-            <li>Бязь</li>
-          </ul>
-          <br /> 🟢 Преимущества нашей продукции:
-          <ul>
-            <li> Высокая гигроскопичность — хорошо впитывает влагу</li>
-            <li>Изготовлена из натуральных волокон — не вызывает аллергии</li>
-            <li>
-              Комфортна в использовании в жаркую погоду Мягкая и нежная на ощупь
-            </li>
-            <li>Лёгкий уход — допускает стирку в бытовых условиях</li>
-          </ul>
+        <p className="element-animation el">
+          {t("productionBase_1")} <br />
+          <br />
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t("mainProductParameters_title"),
+            }}
+          />
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t("mainProductParameters_list"),
+            }}
+          />
+          <br />
+          <span
+            dangerouslySetInnerHTML={{ __html: t("equipmentAndStaff_1") }}
+          />
         </p>
-        <img src={infoblock1} alt="" />
+        <img className="element-animation er" src={infoblock2} alt="" />
+      </div>
+      <div className={styles.about_item}>
+        <p className="element-animation er">
+          {t("cottonFabrics_description")}
+          <span dangerouslySetInnerHTML={{ __html: t("cottonFabrics_list") }} />
+          <br /> {t("cottonFabricsAdvantages_description")}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t("cottonFabricsAdvantages_list"),
+            }}
+          />
+        </p>
+        <img className="element-animation el" src={infoblock1} alt="" />
       </div>
     </div>
   );

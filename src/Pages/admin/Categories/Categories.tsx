@@ -105,6 +105,10 @@ export const AdminCategories = () => {
                 <p>Название</p>
                 <input type="text" name="name" />
               </label>{" "}
+              <label>
+                <p>Ключевое слово</p>
+                <input type="text" name="keyword" />
+              </label>
               <label className={styles.modal_photoLabel}>
                 <p>Фото</p>
                 <section>
@@ -199,6 +203,14 @@ export const AdminCategories = () => {
               <label>
                 <p>Название</p>
                 <input type="text" defaultValue={editing.name} name="name" />
+              </label>{" "}
+              <label>
+                <p>Ключевое слово</p>
+                <input
+                  type="text"
+                  defaultValue={editing.keyword}
+                  name="keyword"
+                />
               </label>{" "}
               <label className={styles.modal_photoLabel}>
                 <p>Фото</p>

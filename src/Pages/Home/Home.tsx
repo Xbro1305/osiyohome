@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaArrowRight, FaChevronDown, FaTelegramPlane } from "react-icons/fa";
 import infoblock1 from "../../assets/infoblock_1.jpg";
 import infoblock2 from "../../assets/infoblock_2.jpg";
+import infoblock3 from "../../assets/infoblock3.webp";
 import { Carousel } from "./Carousel";
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpg";
@@ -15,11 +16,16 @@ import { BiPhone } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import axios from "axios";
 import { Loader } from "../../widgets/Loader/Loader";
+import { useTranslation } from "react-i18next";
+import { runIntersectionAnimation } from "../../widgets/Animation";
 
 export const Home = () => {
   const [news, setNews] = useState([]);
   const [sets, setSets] = useState([]);
   const [load, setLoad] = useState(true);
+  const [adv, setAdv] = useState<0 | 1 | 2 | 3 | 4>(1);
+  const { t } = useTranslation();
+
   useEffect(() => {
     axios(`${import.meta.env.VITE_APP_API_URL}/products?type=0`, {
       data: { length: 10 },
@@ -33,26 +39,41 @@ export const Home = () => {
       .catch((err) => console.log(err))
       .finally(() => setLoad(false));
   }, []);
-  const [adv, setAdv] = useState<0 | 1 | 2 | 3>(1);
+
+  useEffect(() => {
+    if (!load)
+      setTimeout(() => {
+        runIntersectionAnimation();
+      }, 100);
+  }, [load]);
   return (
     <div className={styles.home}>
       {load && <Loader />}
       <div className={styles.home_slider}>
         <div className={styles.home_banner}>
-          <img src={banner1} alt="" />
-          <p>Где начинается утро с комфорта, а ночь — с уюта</p>
+          <img
+            loading="lazy"
+            className="element-animation "
+            src={banner1}
+            alt=""
+          />
+          <p className="element-animation el">{t("homeArticle")}</p>
         </div>
       </div>
       {sets.length != 0 && news.length != 0 && (
         <div className={styles.home_categories}>
-          <h1 className={styles.home_title}>Новинки</h1>
+          <h1 className={`element-animation ${styles.home_title}`}>
+            {t("newProducts")}
+          </h1>
 
           {news.length != 0 && (
             <div className={styles.home_categories_carousel}>
               <section>
-                <h2 className={styles.home_subtitle}>Свежие ткани</h2>
-                <Link to="/catalog/fabrics">
-                  Перейти
+                <h2 className={`element-animation el ${styles.home_subtitle}`}>
+                  {t("freshFabrics")}
+                </h2>
+                <Link to="/catalog/fabrics" className="element-animation er">
+                  {t("goTo")}
                   <span>
                     <FaArrowRight />
                   </span>
@@ -64,9 +85,14 @@ export const Home = () => {
           {sets.length != 0 && (
             <div className={styles.home_categories_carousel}>
               <section>
-                <h2 className={styles.home_subtitle}>Свежие комплекты</h2>
-                <Link to="/catalog/bedding-sets">
-                  Перейти
+                <h2 className={`element-animation el ${styles.home_subtitle}`}>
+                  {t("freshSets")}
+                </h2>
+                <Link
+                  to="/catalog/bedding-sets"
+                  className="element-animation er"
+                >
+                  {t("goTo")}
                   <span>
                     <FaArrowRight />
                   </span>
@@ -78,138 +104,147 @@ export const Home = () => {
         </div>
       )}
 
-      <div className={styles.home_infoBlock}>
+      <div className={`element-animation eb ${styles.home_infoBlock}`}>
         <section>
-          <h1 className={styles.home_title}>OSIYO HOME TEX</h1>
-          <p className={styles.home_text}>
-            Компания OOO «OSIYO HOME ТЕХ» специализируется на выпуске
-            хлопчатобумажной ткани для производства постельного белья и
-            комплекты. Компания осуществляет свою деятельность в собственных
-            производственных помещениях на территории Наманганской области.
-            <br />
-            На производстве используется широкий спектр современного
-            оборудования ведущих производителей мира, что позволяет производить
-            большой номенклатурный ряд высококачественной продукции способной
-            удовлетворить запросы самого взыскательного заказчика.
-          </p>
+          <h1 className={`element-animation ${styles.home_title}`}>
+            OSIYO HOME TEX
+          </h1>
+          <p
+            className={`element-animation el ${styles.home_text}`}
+            dangerouslySetInnerHTML={{ __html: t("homeCompanyDescription") }}
+          ></p>
         </section>
         <figure>
-          <img src={infoblock1} alt="" />
-          <img src={infoblock2} alt="" />
+          <img
+            loading="lazy"
+            className="element-animation eb"
+            src={infoblock1}
+            alt=""
+          />
+          <img
+            loading="lazy"
+            className="element-animation er"
+            src={infoblock2}
+            alt=""
+          />
         </figure>
       </div>
       <div className={styles.home_companyAdv}>
         <div className={styles.home_companyAdv_item}>
-          <BsClock />
-          <p>Быстрые выполнение закзов</p>
-          <span>
-            Современное оборудование и квалифицированные сотрудники позволяют
-            быстро завершить заказ
+          <BsClock className="element-animation" />
+          <p className="element-animation el">{t("fastOrderProcessing")}</p>
+          <span className="element-animation eb">{t("modernEquipment")}</span>
+        </div>
+        <div className={styles.home_companyAdv_item}>
+          <RxCheck className="element-animation" />
+          <p className="element-animation el">{t("highQuality")}</p>
+          <span className="element-animation eb">
+            {t("qualityDescription")}
           </span>
         </div>
         <div className={styles.home_companyAdv_item}>
-          <RxCheck />
-          <p>Высокое качество</p>
-          <span>
-            Мы используем только высококачественные материалы и современное
-            оборудование для производства нашей продукции
+          <FiTruck className="element-animation" />
+          <p className="element-animation el">{t("worldwideDelivery")}</p>
+          <span className="element-animation eb">
+            {t("deliveryDescription")}
           </span>
-        </div>
-        <div className={styles.home_companyAdv_item}>
-          <FiTruck />
-          <p>Доставка по всему миру</p>
-          <span>Доставка товара в больших тиражах по России и странам СНГ</span>
         </div>
       </div>
       <div className={styles.home_advantages}>
         <div className={styles.home_advantages_top}>
           <p
-            className={styles.home_subtitle}
+            className={`element-animation ${styles.home_subtitle}`}
             style={{ background: adv == 1 ? "var(--gray)" : "" }}
             onClick={() => setAdv(1)}
           >
-            О компании
+            {t("aboutCompany")}
           </p>
           <p
-            className={styles.home_subtitle}
+            className={`element-animation ${styles.home_subtitle}`}
             style={{ background: adv == 2 ? "var(--gray)" : "" }}
             onClick={() => setAdv(2)}
           >
-            Производство
-          </p>
+            {t("yarnTitle")}
+          </p>{" "}
           <p
-            className={styles.home_subtitle}
+            className={`element-animation ${styles.home_subtitle}`}
             style={{ background: adv == 3 ? "var(--gray)" : "" }}
             onClick={() => setAdv(3)}
           >
-            Преимущества
+            {t("production")}
+          </p>
+          <p
+            className={`element-animation ${styles.home_subtitle}`}
+            style={{ background: adv == 4 ? "var(--gray)" : "" }}
+            onClick={() => setAdv(4)}
+          >
+            {t("advantages")}
           </p>
         </div>
-        <div className={styles.home_advantages_content}>
+        <div
+          className={`element-animation eb ${styles.home_advantages_content}`}
+        >
           {adv === 1 && (
-            <div className={styles.home_advantages_item}>
-              <p>
-                ООО «OSIYO HOME TEX» — это текстильное предприятие,
-                специализирующееся на производстве хлопчатобумажной ткани для
-                изготовления постельного белья и текстильных комплектов. <br />
+            <div className={`${styles.home_advantages_item}`}>
+              <p className="element-animation el">
+                {t("companyDescription_1")}
                 <br />
-                Компания ведёт свою деятельность на территории Наманганской
-                области в собственных производственных помещениях, что
-                обеспечивает полный контроль над качеством на всех этапах
-                выпуска продукции. <br />
-                <br /> Мы используем современное оборудование ведущих мировых
-                производителей, что позволяет нам выпускать продукцию,
-                соответствующую международным стандартам качества и
-                удовлетворяющую потребности даже самых требовательных клиентов.
+                <br />
+                {t("companyDescription_2")}
+                <br />
+                <br />
+                {t("companyDescription_3")}
               </p>
-              <img src={logo} alt="" />
+              <img className="element-animation er" src={logo} alt="" />
             </div>
           )}
           {adv === 2 && (
-            <div className={styles.home_advantages_item}>
-              <p>
-                Производственная база предприятия позволяет выпускать до
-                <b>12 000 погонных метров ткани в сутки.</b> <br />
+            <div className={`${styles.home_advantages_item}`}>
+              <p className="element-animation el">
+                {t("cottonYarnProduction")} <br />
                 <br />
-                <b> 🔧 Основные параметры выпускаемой продукции:</b>
-                <ul>
-                  <li>Ширина ткани: от 160 см до 240 см </li>
-                  <li>Поверхностная плотность: от 100 г/м² до 250 г/м²</li>
-                </ul>
-                <br />
-                Наше оборудование и квалифицированный персонал обеспечивают
-                стабильное качество и высокую производительность, благодаря чему
-                мы можем выполнять как стандартные, так и индивидуальные заказы
-                в короткие сроки.
               </p>
-              <img src={infoblock2} alt="" />
+              <img className="element-animation er" src={infoblock3} alt="" />
             </div>
           )}
           {adv === 3 && (
-            <div className={styles.home_advantages_item}>
-              <p>
-                Мы предлагаем хлопчатобумажные ткани следующих видов:
-                <ul>
-                  <li>Поплин</li>
-                  <li>Ранфорс (Ромфорс)</li>
-                  <li>Сатин</li>
-                  <li>Страйп-сатин </li>
-                  <li>Бязь</li>
-                </ul>
-                <br /> 🟢 Преимущества нашей продукции:
-                <ul>
-                  <li> Высокая гигроскопичность — хорошо впитывает влагу</li>
-                  <li>
-                    Изготовлена из натуральных волокон — не вызывает аллергии
-                  </li>
-                  <li>
-                    Комфортна в использовании в жаркую погоду Мягкая и нежная на
-                    ощупь
-                  </li>
-                  <li>Лёгкий уход — допускает стирку в бытовых условиях</li>
-                </ul>
+            <div className={`${styles.home_advantages_item}`}>
+              <p className="element-animation el">
+                {t("productionBase_1")} <br />
+                <br />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("mainProductParameters_title"),
+                  }}
+                />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("mainProductParameters_list"),
+                  }}
+                />
+                <br />
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("equipmentAndStaff_1") }}
+                />
               </p>
-              <img src={infoblock1} alt="" />
+              <img className="element-animation er" src={infoblock3} alt="" />
+            </div>
+          )}
+          {adv === 4 && (
+            <div className={`${styles.home_advantages_item}`}>
+              <p className="element-animation el">
+                {t("cottonFabrics_description")}
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("cottonFabrics_list") }}
+                />
+                <br /> {t("cottonFabricsAdvantages_description")}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("cottonFabricsAdvantages_list"),
+                  }}
+                />
+              </p>
+              <img className="element-animation er" src={infoblock1} alt="" />
             </div>
           )}
         </div>
@@ -217,10 +252,11 @@ export const Home = () => {
       <div className={styles.home_advantages_mob}>
         <div
           style={{ background: "var(--gray)" }}
+          className="element-animation"
           onClick={() => setAdv(adv == 1 ? 0 : 1)}
         >
           <p className={styles.home_subtitle}>
-            О компании
+            {t("aboutCompany")}
             <FaChevronDown
               style={{
                 transform: adv == 1 ? "rotate(180deg)" : "",
@@ -230,26 +266,21 @@ export const Home = () => {
           {adv === 1 && (
             <div className={styles.home_advantages_mob_item}>
               <p>
-                ООО «OSIYO HOME TEX» — это текстильное предприятие,
-                специализирующееся на производстве хлопчатобумажной ткани для
-                изготовления постельного белья и текстильных комплектов. <br />
+                {t("companyDescription_1")}
                 <br />
-                Компания ведёт свою деятельность на территории Наманганской
-                области в собственных производственных помещениях, что
-                обеспечивает полный контроль над качеством на всех этапах
-                выпуска продукции. <br />
-                <br /> Мы используем современное оборудование ведущих мировых
-                производителей, что позволяет нам выпускать продукцию,
-                соответствующую международным стандартам качества и
-                удовлетворяющую потребности даже самых требовательных клиентов.
+                <br />
+                {t("companyDescription_2")}
+                <br />
+                <br />
+                {t("companyDescription_3")}
               </p>
               <img src={logo} alt="" />
             </div>
           )}
         </div>
-
         <div
           style={{ background: "var(--gray)" }}
+          className="element-animation"
           onClick={() => setAdv(adv == 2 ? 0 : 2)}
         >
           <p
@@ -257,7 +288,7 @@ export const Home = () => {
             style={{ background: "var(--gray)" }}
             onClick={() => setAdv(adv == 2 ? 0 : 2)}
           >
-            Производственные мощности
+            {t("yarnTitle")}
             <FaChevronDown
               style={{
                 transform: adv == 2 ? "rotate(180deg)" : "",
@@ -267,27 +298,15 @@ export const Home = () => {
           {adv === 2 && (
             <div className={styles.home_advantages_mob_item}>
               <p>
-                Производственная база предприятия позволяет выпускать до
-                <b>12 000 погонных метров ткани в сутки.</b> <br />
-                <br />
-                <b> 🔧 Основные параметры выпускаемой продукции:</b>
-                <ul>
-                  <li>Ширина ткани: от 160 см до 240 см </li>
-                  <li>Поверхностная плотность: от 100 г/м² до 250 г/м²</li>
-                </ul>
-                <br />
-                Наше оборудование и квалифицированный персонал обеспечивают
-                стабильное качество и высокую производительность, благодаря чему
-                мы можем выполнять как стандартные, так и индивидуальные заказы
-                в короткие сроки.
+                {t("cottonYarnProduction")} <br />
               </p>
-              <img src={infoblock2} alt="" />
+              <img src={infoblock3} alt="" />
             </div>
           )}
         </div>
-
         <div
           style={{ background: "var(--gray)" }}
+          className="element-animation"
           onClick={() => setAdv(adv == 3 ? 0 : 3)}
         >
           <p
@@ -295,7 +314,7 @@ export const Home = () => {
             style={{ background: "var(--gray)" }}
             onClick={() => setAdv(adv == 3 ? 0 : 3)}
           >
-            Ассортимент и преимущества тканей
+            {t("production")}
             <FaChevronDown
               style={{
                 transform: adv == 3 ? "rotate(180deg)" : "",
@@ -305,26 +324,57 @@ export const Home = () => {
           {adv === 3 && (
             <div className={styles.home_advantages_mob_item}>
               <p>
-                Мы предлагаем хлопчатобумажные ткани следующих видов:
-                <ul>
-                  <li>Поплин</li>
-                  <li>Ранфорс (Ромфорс)</li>
-                  <li>Сатин</li>
-                  <li>Страйп-сатин </li>
-                  <li>Бязь</li>
-                </ul>
-                <br /> 🟢 Преимущества нашей продукции:
-                <ul>
-                  <li> Высокая гигроскопичность — хорошо впитывает влагу</li>
-                  <li>
-                    Изготовлена из натуральных волокон — не вызывает аллергии
-                  </li>
-                  <li>
-                    Комфортна в использовании в жаркую погоду Мягкая и нежная на
-                    ощупь
-                  </li>
-                  <li>Лёгкий уход — допускает стирку в бытовых условиях</li>
-                </ul>
+                {t("productionBase_1")} <br />
+                <br />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("mainProductParameters_title"),
+                  }}
+                />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("mainProductParameters_list"),
+                  }}
+                />
+                <br />
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("equipmentAndStaff_1") }}
+                />
+              </p>
+              <img src={infoblock2} alt="" />
+            </div>
+          )}
+        </div>
+        <div
+          style={{ background: "var(--gray)" }}
+          className="element-animation"
+          onClick={() => setAdv(adv == 4 ? 0 : 4)}
+        >
+          <p
+            className={styles.home_subtitle}
+            style={{ background: "var(--gray)" }}
+            onClick={() => setAdv(adv == 4 ? 0 : 4)}
+          >
+            {t("advantages")}
+            <FaChevronDown
+              style={{
+                transform: adv == 4 ? "rotate(180deg)" : "",
+              }}
+            />
+          </p>
+          {adv === 4 && (
+            <div className={styles.home_advantages_mob_item}>
+              <p>
+                {t("cottonFabrics_description")}
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("cottonFabrics_list") }}
+                />
+                <br /> {t("cottonFabricsAdvantages_description")}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("cottonFabricsAdvantages_list"),
+                  }}
+                />
               </p>
               <img src={infoblock1} alt="" />
             </div>
@@ -333,23 +383,29 @@ export const Home = () => {
       </div>
       <div className={styles.home_contacts}>
         <div className={styles.home_contacts_left}>
-          <h1 className={styles.home_title}>Контакты</h1>
-          <p>
+          <h1 className={`element-animation ${styles.home_title}`}>
+            {t("contacts")}
+          </h1>
+          <p className="element-animation el">
             <MdLocationPin />
-            Наманганская область, город Наманган, Раустан МСГ, улица Дустлик, 7
+            {t("address")}
           </p>
-          <section>
-            <Link to="tel:+998911783333">
+          <section className="element-animation el">
+            <Link to="tel:+998907520033">
               <BiPhone />
-              +998 911783333
+              +998 907520033
+            </Link>
+            <Link to="tel:+998906950033">
+              <BiPhone />
+              +998 906950033
             </Link>
             <Link to="tel:+998911801311">
               <BiPhone />
               +998 911801311
             </Link>
           </section>
-          <section>
-            <span>Мы в социальных сетях:</span>
+          <section className="element-animation eb">
+            <span>{t("socialMedia")}</span>
             <Link to="https://t.me/OsiyoHomeTex1" target="_blank">
               <FaTelegramPlane /> @OsiyoHomeTex1
             </Link>
@@ -364,9 +420,12 @@ export const Home = () => {
               <TfiEmail /> osiyotex@gmail.com
             </Link>
           </section>
-          <p>© 2017–{new Date().getFullYear()} OOO "Osiyo Home Textile"</p>
+          <p className="element-animation eb">
+            © 2017–{new Date().getFullYear()} {t("companyName")}
+          </p>
         </div>
         <iframe
+          className="element-animation eb"
           src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6023.930386428343!2d71.606341!3d40.982243!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDU4JzU2LjEiTiA3McKwMzYnMjIuOCJF!5e0!3m2!1sru!2sus!4v1748340661772!5m2!1sru!2sus"
           width="600"
           height="450"

@@ -244,6 +244,10 @@
         align-items: flex-start;
       }
 
+      li {
+        margin-left: 14px !important;
+      }
+
       p {
         font-size: 22px;
         font-weight: 400;
@@ -291,6 +295,10 @@
             align-items: center;
             gap: 10px;
           }
+        }
+
+        li {
+          margin-left: 14px !important;
         }
 
         &_item {
@@ -361,12 +369,13 @@
       }
 
       a {
+        
         color: var(--text-primary);
         text-decoration: none;
         font-size: 20px;
         display: flex;
         align-items: center;
-        gap: 2px;
+        gap: 10px;
         font-weight: 500;
 
         &:hover {

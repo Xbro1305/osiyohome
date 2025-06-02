@@ -1,14 +1,28 @@
 import styles from "./Header.module.scss";
 import logo from "../../assets/logo.jpg";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { runIntersectionAnimation } from "../Animation";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
 
+  const { i18n, t } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      runIntersectionAnimation();
+    }, 100);
+  }, []);
+
   return (
     <header className={`${styles.header} ${open ? styles.active : ""}`}>
-      <Link to={"/"} className={styles.header_logo}>
+      <Link to={"/"} className={`element-animation el ${styles.header_logo}`}>
         <img src={logo} alt="" />
         <p className={styles.header_logo_text}>
           <span>OSIYO</span>
@@ -16,44 +30,61 @@ export const Header = () => {
         </p>
       </Link>
 
-      <nav className={styles.header_links}>
-        <NavLink onClick={() => setOpen(false)} className="header_link" to="/">
-          Главная
+      <nav className={`${styles.header_links}`}>
+        <NavLink
+          onClick={() => setOpen(false)}
+          className="header_link element-animation"
+          to="/"
+        >
+          {t("home")}
         </NavLink>
         <NavLink
           onClick={() => setOpen(false)}
-          className="header_link"
+          className="header_link element-animation"
           to="/about"
         >
-          О компании
+          {t("about")}
         </NavLink>
         <div
-          style={{ textAlign: "left", marginRight: "auto", padding: "10px" }}
-          className="header_link"
+          style={{ textAlign: "left", padding: "10px" }}
+          className="header_link element-animation"
         >
-          Каталог
+          {t("catalog")}
           <section>
             <NavLink onClick={() => setOpen(false)} to={"/catalog/fabrics"}>
-              Ткани
+              {t("fabrics_title")}
             </NavLink>
             <NavLink
               onClick={() => setOpen(false)}
               to={"/catalog/bedding_sets"}
             >
-              Комплекты постельного белья
+              {t("beddingSets_title")}
             </NavLink>
           </section>
         </div>
         <NavLink
           onClick={() => setOpen(false)}
-          className="header_link"
+          className="header_link element-animation"
           to="/contacts"
         >
-          Контакты
+          {t("contacts")}
         </NavLink>
+        <section className="element-animation er">
+          <select
+            value={localStorage.getItem("i18nextLng") || "en"}
+            onChange={(e) => changeLanguage(e.target.value)}
+          >
+            <option value="ru">Русский</option>
+            <option value="uz">O'zbek</option>
+            <option value="en">English</option>
+          </select>
+        </section>
       </nav>
 
-      <button onClick={() => setOpen(!open)} className={styles.header_burger}>
+      <button
+        onClick={() => setOpen(!open)}
+        className={`element-animation er ${styles.header_burger}`}
+      >
         {open ? (
           <p>&times;</p>
         ) : (
