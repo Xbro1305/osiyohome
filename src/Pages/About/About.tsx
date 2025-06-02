@@ -16,6 +16,9 @@ export const About = () => {
     setTimeout(() => {
       runIntersectionAnimation();
     }, 100);
+
+    const titleElement = document?.querySelector("title");
+    if (titleElement) titleElement.innerText = "О компании - Osiyo Home Tex";
   }, []);
 
   return (

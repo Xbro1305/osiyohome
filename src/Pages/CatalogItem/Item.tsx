@@ -25,6 +25,16 @@ export const CatalogItem = () => {
   }, [art]);
 
   useEffect(() => {
+    const titleElement = document?.querySelector("title");
+    if (titleElement) {
+      if (!item) return;
+      else if (item?.type == 1)
+        titleElement.innerText = item?.name + " - Osiyo Home Tex";
+      else titleElement.innerText = item?.article + " - Osiyo Home Tex";
+    }
+  }, [item]);
+
+  useEffect(() => {
     if (!loadin)
       setTimeout(() => {
         runIntersectionAnimation();

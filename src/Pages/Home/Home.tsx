@@ -38,6 +38,9 @@ export const Home = () => {
       .then((res) => setSets(res.data.innerData))
       .catch((err) => console.log(err))
       .finally(() => setLoad(false));
+
+      const titleElement = document?.querySelector("title");
+      if (titleElement) titleElement.innerText = "Главная - Osiyo Home Tex";
   }, []);
 
   useEffect(() => {

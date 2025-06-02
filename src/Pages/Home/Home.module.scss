@@ -7,7 +7,7 @@
 
     img {
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 100px);
       object-fit: cover;
       position: relative;
     }
@@ -15,21 +15,19 @@
     p {
       position: absolute;
       top: 50%;
-      left: 20px;
+      left: var(--sides-padding);
       transform: translateY(-50%);
       font-size: 48px;
       inline-size: 500px;
       font-weight: 600;
       color: var(--white);
       @media (max-width: 768px) {
-        font-size: 24px;
+        font-size: 32px;
+        inline-size: 45%;
       }
       @media (max-width: 480px) {
         font-size: 20px;
         display: none;
-      }
-      @media (max-width: 320px) {
-        font-size: 18px;
       }
     }
   }
@@ -369,7 +367,6 @@
       }
 
       a {
-        
         color: var(--text-primary);
         text-decoration: none;
         font-size: 20px;

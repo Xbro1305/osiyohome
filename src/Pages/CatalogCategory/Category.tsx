@@ -20,6 +20,9 @@ export const CatalogCategory = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    const titleElement = document?.querySelector("title");
+    if (titleElement) titleElement.innerText = "Каталог - Osiyo Home Tex";
+
     axios(`${import.meta.env.VITE_APP_API_URL}/products?categoryId=${category}`)
       .then((res) => setCategoryItems(res.data.innerData))
       .catch((err) => toast.error(err.response.data.msg))

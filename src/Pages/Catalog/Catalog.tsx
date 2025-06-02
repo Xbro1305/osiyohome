@@ -14,6 +14,9 @@ export const Catalog = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    const titleElement = document?.querySelector("title");
+    if (titleElement) titleElement.innerText = "Каталог - Osiyo Home Tex";
+
     setLoading(true);
     const baseUrl = import.meta.env.VITE_APP_API_URL;
     const url =

@@ -20,6 +20,9 @@ export const Contact = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    const titleElement = document?.querySelector("title");
+    if (titleElement) titleElement.innerText = "Контакты - Osiyo Home Tex";
+
     emailjs.init("RZZxM8VbiJBQE2jC2");
   }, []);
 

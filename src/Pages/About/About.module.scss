@@ -37,6 +37,16 @@
 
     img {
       max-width: calc(50% - 20px);
+
+      @media (max-width: 768px) {
+        width: 70%;
+        max-width: 500px;
+      }
+
+      @media (max-width: 480px) {
+        width: 100%;
+        max-width: 500px;
+      }
     }
   }
 
@@ -61,7 +71,6 @@
 
   img {
     width: 50%;
-    aspect-ratio: 1/1;
     object-fit: contain;
     object-position: top;
   }
