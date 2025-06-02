@@ -8,17 +8,17 @@ import { runIntersectionAnimation } from "../Animation";
 export const Header = () => {
   const [open, setOpen] = useState(false);
 
-  const { i18n, t } = useTranslation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
   useEffect(() => {
     setTimeout(() => {
       runIntersectionAnimation();
     }, 100);
   }, []);
+
+  const { i18n, t } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <header className={`${styles.header} ${open ? styles.active : ""}`}>
@@ -30,24 +30,20 @@ export const Header = () => {
         </p>
       </Link>
 
-      <nav className={`${styles.header_links}`}>
-        <NavLink
-          onClick={() => setOpen(false)}
-          className="header_link element-animation"
-          to="/"
-        >
+      <nav className={`${styles.header_links} element-animation`}>
+        <NavLink onClick={() => setOpen(false)} className="header_link" to="/">
           {t("home")}
         </NavLink>
         <NavLink
           onClick={() => setOpen(false)}
-          className="header_link element-animation"
+          className="header_link"
           to="/about"
         >
           {t("about")}
         </NavLink>
         <div
           style={{ textAlign: "left", padding: "10px" }}
-          className="header_link element-animation"
+          className="header_link"
         >
           {t("catalog")}
           <section>
@@ -64,7 +60,7 @@ export const Header = () => {
         </div>
         <NavLink
           onClick={() => setOpen(false)}
-          className="header_link element-animation"
+          className="header_link"
           to="/contacts"
         >
           {t("contacts")}

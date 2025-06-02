@@ -133,7 +133,7 @@ export const Contact = () => {
             </Link>
           </section>
           <p className="element-animation eb">
-            © 2017–{new Date().getFullYear()} {t("companyName")}
+            © 2017–{new Date().getFullYear()}, {t("companyName")}
           </p>
         </div>
         <iframe

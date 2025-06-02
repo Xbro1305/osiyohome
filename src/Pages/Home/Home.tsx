@@ -45,7 +45,7 @@ export const Home = () => {
       setTimeout(() => {
         runIntersectionAnimation();
       }, 100);
-  }, [load]);
+  }, [load, adv]);
   return (
     <div className={styles.home}>
       {load && <Loader />}
@@ -421,7 +421,7 @@ export const Home = () => {
             </Link>
           </section>
           <p className="element-animation eb">
-            © 2017–{new Date().getFullYear()} {t("companyName")}
+            © 2017–{new Date().getFullYear()}, {t("companyName")}
           </p>
         </div>
         <iframe

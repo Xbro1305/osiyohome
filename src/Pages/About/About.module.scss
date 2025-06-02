@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: var(--top-padding) var(--sides-padding);
-  gap: 30px;
+  gap: 100px;
 
   > :nth-child(even) {
     display: flex;
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
+    gap: 40px;
 
     @media (max-width: 1024px) {
       flex-direction: column;
@@ -36,8 +36,7 @@
     }
 
     img {
-      width: 450px;
-      max-width: 100%;
+      max-width: calc(50% - 20px);
     }
   }
 
