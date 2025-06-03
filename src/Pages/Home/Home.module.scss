@@ -155,6 +155,8 @@
   }
 
   &_infoBlock {
+    width: 100%;
+    overflow: hidden;
     display: flex;
     background: var(--gray);
     padding: var(--top-padding) var(--sides-padding);
