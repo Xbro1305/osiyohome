@@ -13,6 +13,8 @@
 
 body {
   font-family: "Bahnschrift", sans-serif;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 a {
