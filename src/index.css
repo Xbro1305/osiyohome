@@ -110,7 +110,7 @@ textarea {
 
 .element-animation {
   opacity: 0;
-  transform: translateY(-50px);
+  transform: translateY(-40px);
   transition: all 0.8s ease;
 }
 
@@ -135,4 +135,24 @@ textarea {
   transition: all 0.8s;
   transition-delay: 0.4s;
   transform: translateY(0) scale(1);
+}
+
+@media (max-witdh: 768px) {
+  .element-animation {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.8s ease;
+  }
+
+  .element-animation.el {
+    transform: translateY(0) translateX(-30px);
+  }
+
+  .element-animation.er {
+    transform: translateY(0) translateX(30px);
+  }
+
+  .element-animation.eb {
+    transform: translateY(30px);
+  }
 }

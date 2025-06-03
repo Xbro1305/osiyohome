@@ -10,9 +10,9 @@ export const AdminItems = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("0");
   const [loading, setLoading] = useState(true);
-  const [creatingType, setCreatingType] = useState("0");
+  const [creatingType, setCreatingType] = useState(0);
   const [data, setData] = useState([]);
-  const [files, setFiles] = useState<string[]>([]);
+  const [files, setFiles] = useState<File[]>([]);
   const [categories, setCategories] = useState<any>([]);
   const [editing, setEditing] = useState<any>();
 
@@ -20,8 +20,6 @@ export const AdminItems = () => {
     axios(`${import.meta.env.VITE_APP_API_URL}/categories`)
       .then((res) => setCategories(res.data.innerData))
       .catch((err) => toast.error(err.response.data.msg));
-
-    console.log(creatingType);
   }, []);
 
   const refresh = () => {
@@ -86,7 +84,7 @@ export const AdminItems = () => {
           <button
             onClick={() => {
               setIsOpen(true);
-              setCreatingType("0");
+              setCreatingType(0);
             }}
           >
             + Добавить новый товар
@@ -104,7 +102,10 @@ export const AdminItems = () => {
             key={index}
             className={styles.items_list_item}
           >
-            <img src={item.img[0]} alt={item.name} />
+            <img
+              src={`${import.meta.env.VITE_APP_API_URL}${item.img[0]}`}
+              alt={item.name}
+            />
             <p>Артикул: {item.article}</p>
             <h2>{item.name}</h2>
           </div>
@@ -122,40 +123,61 @@ export const AdminItems = () => {
               &times;
             </button>
             <form
-              onSubmit={(e) => {
-                setLoading(true);
-                const data = new FormData(e.target as HTMLFormElement);
-                const value = Object.fromEntries(data);
-
+              onSubmit={async (e) => {
                 e.preventDefault();
-                axios(`${import.meta.env.VITE_APP_API_URL}/products/create`, {
-                  method: "POST",
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                  },
-                  data: { ...value, img: files },
-                })
-                  .then((res) => {
-                    toast.success(res.data.msg);
-                    refresh();
-                  })
-                  .catch((err) => toast.error(err.response.data.msg))
-                  .finally(() => setLoading(false));
+                setLoading(true);
+
+                const form = e.target as HTMLFormElement;
+                const formData = new FormData(form);
+
+                // Добавим файлы
+                for (const file of files) {
+                  formData.append("images", file); // "images" должно совпадать с backend .array("images")
+                }
+
+                try {
+                  const res = await axios.post(
+                    `${import.meta.env.VITE_APP_API_URL}/products/create`,
+                    formData,
+                    {
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                          "token"
+                        )}`,
+                      },
+                    }
+                  );
+                  toast.success(res.data.msg);
+                } catch (err: any) {
+                  toast.error(
+                    err?.response?.data?.msg || "Ошибка при создании"
+                  );
+                } finally {
+                  setLoading(false);
+                }
               }}
             >
               <h1>Создать новый товар</h1>
+
               <label>
                 <p>Название</p>
-                <input type="text" name="name" />
+                <input type="text" name="name" required />
               </label>
+
               <label className={styles.modal_photoLabel}>
                 <p>Фото</p>
                 <section
                   style={{ flexDirection: files.length ? "row" : "column" }}
                 >
                   {files.length ? (
-                    files.map((i) => <img src={i} alt="" />)
+                    files.map((file, i) => (
+                      <img
+                        key={i}
+                        src={URL.createObjectURL(file)}
+                        alt=""
+                        style={{ width: 100, height: 100, objectFit: "cover" }}
+                      />
+                    ))
                   ) : (
                     <>
                       <BiImage />
@@ -164,111 +186,88 @@ export const AdminItems = () => {
                   )}
                 </section>
                 <input
-                  style={{ appearance: "none", display: "none" }}
                   type="file"
                   accept="image/*"
                   multiple
-                  onChange={async (e) => {
-                    const files = e.target.files;
-                    if (!files) return;
-
-                    const toBase64 = (file: File): Promise<string> =>
-                      new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(file);
-                        reader.onload = () => resolve(reader.result as string);
-                        reader.onerror = (error) => reject(error);
-                      });
-
-                    const base64Files: string[] = [];
-
-                    for (const file of Array.from(files)) {
-                      try {
-                        const base64 = await toBase64(file);
-                        base64Files.push(base64);
-                      } catch (err) {
-                        console.error("Ошибка при преобразовании файла:", err);
-                      }
-                    }
-
-                    setFiles(base64Files);
+                  style={{ appearance: "none", display: "none" }}
+                  onChange={(e) => {
+                    const selectedFiles = e.target.files;
+                    if (!selectedFiles) return;
+                    setFiles(Array.from(selectedFiles));
                   }}
                 />
               </label>
+
               <label>
                 <p>Тип товара</p>
                 <select
-                  onChange={(e) => setCreatingType(e.target.value)}
+                  onChange={(e) => setCreatingType(Number(e.target.value))}
                   name="type"
                 >
                   <option value={0}>Ткань</option>
                   <option value={1}>КПБ</option>
                 </select>
               </label>
+
               <label>
                 <p>Категория</p>
-                {creatingType == "0" ? (
-                  <select name="categoryId" id="">
-                    {categories
-                      ?.filter((item: any) => item.applies_to == "0")
-                      ?.map((item: any) => (
-                        <option value={item.categoryId}>{item.name}</option>
-                      ))}
-                  </select>
-                ) : (
-                  <select name="categoryId" id="">
-                    {categories
-                      ?.filter((item: any) => item.applies_to == "1")
-                      ?.map((item: any) => (
-                        <option value={item.categoryId}>{item.name}</option>
-                      ))}
-                  </select>
-                )}
+                <select name="categoryId">
+                  {categories
+                    ?.filter((item: any) => item.applies_to === creatingType)
+                    ?.map((item: any) => (
+                      <option key={item.categoryId} value={item.categoryId}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
               </label>
-              {creatingType == "0" && (
+
+              {creatingType === 0 && (
                 <>
                   <label>
                     <p>Ширина ткани</p>
                     <input type="text" name="width" />
                   </label>
-
                   <label>
                     <p>Граммовка</p>
                     <input type="text" name="weight" />
                   </label>
                 </>
               )}
-              {creatingType == "1" && (
+
+              {creatingType === 1 && (
                 <>
                   <label>
                     <p>Размер постели</p>
                     <input type="text" name="size" />
                   </label>
                   <label>
-                    <p>Кол-во наволочек </p>
+                    <p>Кол-во наволочек</p>
                     <input type="text" name="pillowcases" />
                   </label>
                   <label>
-                    <p>Размер наволочки </p>
+                    <p>Размер наволочки</p>
                     <input type="text" name="pillowcaseSize" />
                   </label>
                   <label>
-                    <p>Размер простыни </p>
+                    <p>Размер простыни</p>
                     <input type="text" name="bedsheetSize" />
                   </label>
                   <label>
-                    <p>Размер пододеяльника </p>
+                    <p>Размер пододеяльника</p>
                     <input type="text" name="duvetCoverSize" />
                   </label>
                 </>
               )}
 
               <label>
-                <p>Материал </p>
+                <p>Материал</p>
                 <input type="text" name="cloth" />
               </label>
 
-              <button type="submit">Отправить</button>
+              <button type="submit" disabled={loading}>
+                {loading ? "Отправка..." : "Отправить"}
+              </button>
             </form>
           </div>
         </div>
@@ -285,31 +284,39 @@ export const AdminItems = () => {
               &times;
             </button>
             <form
-              onSubmit={(e) => {
-                setLoading(true);
-                const data = new FormData(e.target as HTMLFormElement);
-                const value = Object.fromEntries(data);
-
+              onSubmit={async (e) => {
                 e.preventDefault();
-                axios(
-                  `${import.meta.env.VITE_APP_API_URL}/products/update/${
-                    editing._id
-                  }`,
-                  {
-                    method: "PATCH",
-                    headers: {
-                      Authorization: `Bearer ${localStorage.getItem("token")}`,
-                      "Content-Type": "application/json",
-                    },
-                    data: { ...value, img: files },
-                  }
-                )
-                  .then((res) => {
-                    toast.success(res.data.msg);
-                    refresh();
-                  })
-                  .catch((err) => toast.error(err.response.data.msg))
-                  .finally(() => setLoading(false));
+                setLoading(true);
+
+                const formData = new FormData(e.target as HTMLFormElement);
+
+                // Добавляем файлы
+                for (const file of files) {
+                  formData.append("images", file); // Название должно совпадать с backend
+                }
+
+                try {
+                  const res = await axios.patch(
+                    `${import.meta.env.VITE_APP_API_URL}/products/update/${
+                      editing._id
+                    }`,
+                    formData,
+                    {
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                          "token"
+                        )}`,
+                      },
+                    }
+                  );
+                  toast.success(res.data.msg);
+                } catch (err: any) {
+                  toast.error(
+                    err?.response?.data?.msg || "Ошибка при обновлении"
+                  );
+                } finally {
+                  setLoading(false);
+                }
               }}
             >
               <h1>Редактирование товара</h1>
@@ -322,13 +329,32 @@ export const AdminItems = () => {
                   name="name"
                 />
               </label>
+
               <label className={styles.modal_photoLabel}>
                 <p>Фото</p>
                 <section
                   style={{ flexDirection: files.length ? "row" : "column" }}
                 >
                   {files.length ? (
-                    files.map((i) => <img src={i} alt="" />)
+                    files.map((file, i) => {
+                      const src =
+                        typeof file === "string"
+                          ? `${import.meta.env.VITE_APP_API_URL}${file}` // если это строка — добавим базовый URL
+                          : URL.createObjectURL(file); // если это File
+
+                      return (
+                        <img
+                          key={i}
+                          src={src}
+                          alt=""
+                          style={{
+                            width: 100,
+                            height: 100,
+                            objectFit: "cover",
+                          }}
+                        />
+                      );
+                    })
                   ) : (
                     <>
                       <BiImage />
@@ -341,37 +367,18 @@ export const AdminItems = () => {
                   type="file"
                   accept="image/*"
                   multiple
-                  onChange={async (e) => {
-                    const files = e.target.files;
-                    if (!files) return;
-
-                    const toBase64 = (file: File): Promise<string> =>
-                      new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(file);
-                        reader.onload = () => resolve(reader.result as string);
-                        reader.onerror = (error) => reject(error);
-                      });
-
-                    const base64Files: string[] = [];
-
-                    for (const file of Array.from(files)) {
-                      try {
-                        const base64 = await toBase64(file);
-                        base64Files.push(base64);
-                      } catch (err) {
-                        console.error("Ошибка при преобразовании файла:", err);
-                      }
-                    }
-
-                    setFiles(base64Files);
+                  onChange={(e) => {
+                    const selected = e.target.files;
+                    if (!selected) return;
+                    setFiles(Array.from(selected));
                   }}
                 />
               </label>
+
               <label>
                 <p>Тип товара</p>
                 <select
-                  onChange={(e) => setCreatingType(e.target.value)}
+                  onChange={(e) => setCreatingType(Number(e.target.value))}
                   value={creatingType}
                   name="type"
                 >
@@ -379,35 +386,21 @@ export const AdminItems = () => {
                   <option value={1}>КПБ</option>
                 </select>
               </label>
+
               <label>
                 <p>Категория</p>
-                {creatingType == "0" ? (
-                  <select
-                    defaultValue={editing.categoryId}
-                    name="categoryId"
-                    id=""
-                  >
-                    {categories
-                      ?.filter((item: any) => item.applies_to == "0")
-                      ?.map((item: any) => (
-                        <option value={item.categoryId}>{item.name}</option>
-                      ))}
-                  </select>
-                ) : (
-                  <select
-                    defaultValue={editing.applies_to}
-                    name="categoryId"
-                    id=""
-                  >
-                    {categories
-                      ?.filter((item: any) => item.applies_to == "1")
-                      ?.map((item: any) => (
-                        <option value={item.categoryId}>{item.name}</option>
-                      ))}
-                  </select>
-                )}
+                <select defaultValue={editing.categoryId} name="categoryId">
+                  {categories
+                    ?.filter((item: any) => item.applies_to == creatingType)
+                    ?.map((item: any) => (
+                      <option key={item.categoryId} value={item.categoryId}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
               </label>
-              {creatingType == "0" && (
+
+              {creatingType === 0 && (
                 <>
                   <label>
                     <p>Ширина ткани</p>
@@ -418,7 +411,6 @@ export const AdminItems = () => {
                       defaultValue={editing.width}
                     />
                   </label>
-
                   <label>
                     <p>Граммовка</p>
                     <input
@@ -430,7 +422,8 @@ export const AdminItems = () => {
                   </label>
                 </>
               )}
-              {creatingType == "1" && (
+
+              {creatingType === 1 && (
                 <>
                   <label>
                     <p>Размер постели</p>
@@ -441,9 +434,8 @@ export const AdminItems = () => {
                       defaultValue={editing.size}
                     />
                   </label>
-
                   <label>
-                    <p>Кол-во наволочек </p>
+                    <p>Кол-во наволочек</p>
                     <input
                       required
                       type="text"
@@ -451,9 +443,8 @@ export const AdminItems = () => {
                       defaultValue={editing.pillowcases}
                     />
                   </label>
-
                   <label>
-                    <p>Размер наволочки </p>
+                    <p>Размер наволочки</p>
                     <input
                       required
                       type="text"
@@ -461,9 +452,8 @@ export const AdminItems = () => {
                       defaultValue={editing.pillowcaseSize}
                     />
                   </label>
-
                   <label>
-                    <p>Размер простыни </p>
+                    <p>Размер простыни</p>
                     <input
                       required
                       type="text"
@@ -472,7 +462,7 @@ export const AdminItems = () => {
                     />
                   </label>
                   <label>
-                    <p>Размер пододеяльника </p>
+                    <p>Размер пододеяльника</p>
                     <input
                       required
                       type="text"
@@ -482,8 +472,9 @@ export const AdminItems = () => {
                   </label>
                 </>
               )}
+
               <label>
-                <p>Материал </p>
+                <p>Материал</p>
                 <input
                   required
                   type="text"
@@ -491,30 +482,30 @@ export const AdminItems = () => {
                   defaultValue={editing.cloth}
                 />
               </label>
+
               <section>
                 <button
                   type="button"
                   onClick={() => {
-                    const confirm = window.confirm(
+                    const confirmDelete = window.confirm(
                       "Вы уверены, что хотите удалить этот товаp?"
                     );
-
-                    if (!confirm) return;
+                    if (!confirmDelete) return;
 
                     setLoading(true);
-                    axios(
-                      `${import.meta.env.VITE_APP_API_URL}/products/delete/${
-                        editing._id
-                      }`,
-                      {
-                        method: "DELETE",
-                        headers: {
-                          Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                          )}`,
-                        },
-                      }
-                    )
+                    axios
+                      .delete(
+                        `${import.meta.env.VITE_APP_API_URL}/products/delete/${
+                          editing._id
+                        }`,
+                        {
+                          headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                              "token"
+                            )}`,
+                          },
+                        }
+                      )
                       .then((res) => {
                         toast.success(res.data.msg);
                         setFiles([]);
@@ -527,7 +518,10 @@ export const AdminItems = () => {
                 >
                   Удалить
                 </button>
-                <button type="submit">Отправить</button>
+
+                <button type="submit" disabled={loading}>
+                  {loading ? "Сохранение..." : "Отправить"}
+                </button>
               </section>
             </form>
           </div>
