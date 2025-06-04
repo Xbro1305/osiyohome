@@ -27,20 +27,16 @@ export const Home = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    axios(`${import.meta.env.VITE_APP_API_URL}/products?type=0`, {
-      data: { length: 10 },
-    })
+    axios(`${import.meta.env.VITE_APP_API_URL}/products?type=0&length=10`)
       .then((res) => setNews(res.data.innerData))
       .catch((err) => console.log(err));
-    axios(`${import.meta.env.VITE_APP_API_URL}/products?type=1`, {
-      data: { length: 10 },
-    })
+    axios(`${import.meta.env.VITE_APP_API_URL}/products?type=1&length=10`)
       .then((res) => setSets(res.data.innerData))
       .catch((err) => console.log(err))
       .finally(() => setLoad(false));
 
-      const titleElement = document?.querySelector("title");
-      if (titleElement) titleElement.innerText = "Главная - Osiyo Home Tex";
+    const titleElement = document?.querySelector("title");
+    if (titleElement) titleElement.innerText = "Главная - Osiyo Home Tex";
   }, []);
 
   useEffect(() => {
