@@ -21,14 +21,14 @@
   "aboutCompany": "About the company",
   "production": "Production",
   "advantages": "Advantages",
-  "productionBase_1": "The company's production base allows producing up to 20,000 linear meters of fabric per day.",
+  "productionBase_1": "The company's production base allows producing up to 30,000 linear meters of fabric per day.",
   "productionBase_2": "🔧 Main parameters of the produced products:<br/>Fabric width: from 160 cm to 240 cm<br/>Surface density: from 100 g/m² to 250 g/m²",
   "productionBase_3": "Our equipment and qualified staff ensure stable quality and high productivity, allowing us to fulfill both standard and custom orders in a short time.",
   "mainProductParameters_title": "<b>🔧 Main parameters of the produced products:</b>",
   "mainProductParameters_list": "<ul><li>Fabric width: from 160 cm to 240 cm</li><li>Surface density: from 100 g/m² to 250 g/m²</li></ul>",
   "equipmentAndStaff_1": "Our equipment and qualified staff ensure stable quality and high productivity, allowing us to fulfill both standard and custom orders in a short time.",
   "cottonFabrics_description": "We offer the following types of cotton fabrics:",
-  "cottonFabrics_list": "<ul><li>Poplin</li><li>Ranforce (Romforce)</li><li>Satin</li><li>Stripe satin</li><li>Calico</li></ul>",
+  "cottonFabrics_list": "<ul><li>Poplin</li><li>Ranforce</li><li>Percale</li><li>Satin</li><li>Stripe satin</li><li>Calico</li></ul>",
   "cottonFabricsAdvantages_description": "🟢 Advantages of our products:",
   "cottonFabricsAdvantages_list": "<ul><li>High hygroscopicity — absorbs moisture well</li><li>Made from natural fibers — does not cause allergies</li><li>Comfortable to use in hot weather. Soft and gentle to the touch</li><li>Easy care — allows washing in household conditions</li></ul>",
   "yarnTitle": "Yarn",
@@ -62,5 +62,5 @@
   "countryName": "Uzbekistan",
   "printedFabric": "Printed fabric",
   "infoblock4": "<h2>Solid Color Dyeing</h2><span> As part of our production cycle, we also offer <strong>solid color dyeing</strong> using professional jig dyeing machines. Our capacity reaches up to <strong>150,000 linear meters of fabric per month</strong>, allowing us to fulfill both standard and custom orders efficiently.</span><br/><br/><ul> <li>Even and long-lasting dye coverage</li> <li>Wide range of colors (including Pantone matching)</li> <li>High resistance to washing and fading</li> <li>Environmentally friendly dyes</li></ul>",
-  "infoblock5": "<h2>Fabric Printing</h2><span> OSIYO HOME TEX offers high-quality fabric printing using advanced rotary printing equipment. Our production line supports up to <strong>800,000 linear meters of printed fabric per month</strong>, with <strong>up to 12 colors used simultaneously</strong>.</span> <br/><br/><ul> <li>Sharp and fade-resistant prints</li> <li>Rich and vibrant color palette</li> <li>Increased durability of printed designs</li> <li>Custom design options available</li></ul> <br/><br/><span>Printing is available on poplin, ranforce, satin, and calico fabrics.</span>"
+  "infoblock5": "<h2>Fabric Printing</h2><span> OSIYO HOME TEX offers high-quality fabric printing using advanced rotary printing equipment. Our production line supports up to <strong>1,000,000 linear meters of printed fabric per month</strong>, with <strong>up to 12 colors used simultaneously</strong>.</span> <br/><br/><ul> <li>Sharp and fade-resistant prints</li> <li>Rich and vibrant color palette</li> <li>Increased durability of printed designs</li> <li>Custom design options available</li></ul> <br/><br/><span>Printing is available on poplin, ranforce, satin, and calico fabrics.</span>"
 }

@@ -21,14 +21,14 @@
   "aboutCompany": "Kompaniya haqida",
   "production": "Ishlab chiqarish",
   "advantages": "Afzalliklar",
-  "productionBase_1": "Korxonaning ishlab chiqarish bazasi kuniga 20 000 metr mato ishlab chiqarishga imkon beradi.",
+  "productionBase_1": "Korxonaning ishlab chiqarish bazasi kuniga 30 000 metr mato ishlab chiqarishga imkon beradi.",
   "productionBase_2": "🔧 Ishlab chiqarilayotgan mahsulotlarning asosiy parametrlari:<br/> Mato eni: 160 sm dan 240 sm gacha<br/>Yuzaki zichlik: 100 g/m² dan 250 g/m² gacha",
   "productionBase_3": "Bizning uskuna va malakali xodimlarimiz barqaror sifat va yuqori samaradorlikni ta'minlaydi, shu bilan birga standart va individual buyurtmalarni qisqa muddatda bajarishimiz mumkin.",
   "mainProductParameters_title": "<b>🔧 Ishlab chiqarilayotgan mahsulotlarning asosiy parametrlari:</b>",
   "mainProductParameters_list": "<ul><li>Mato eni: 160 sm dan 240 sm gacha</li><li>Yuzaki zichlik: 100 g/m² dan 250 g/m² gacha</li></ul>",
   "equipmentAndStaff_1": "Bizning uskuna va malakali xodimlarimiz barqaror sifat va yuqori samaradorlikni ta'minlaydi, shu bilan birga standart va individual buyurtmalarni qisqa muddatda bajarishimiz mumkin.",
   "cottonFabrics_description": "Biz quyidagi turdagi paxta matolarini taklif qilamiz:",
-  "cottonFabrics_list": "<ul><li>Poplin</li><li>Ranfors (Romfors)</li><li>Satin</li><li>Strayp-satin</li><li>Byaz</li></ul>",
+  "cottonFabrics_list": "<ul><li>Poplin</li><li>Ranfors</li><li>Perkal</li><li>Satin</li><li>Strayp-satin</li><li>Byaz</li></ul>",
   "cottonFabricsAdvantages_description": "🟢 Mahsulotlarimizning afzalliklari:",
   "cottonFabricsAdvantages_list": "<ul><li>Yuqqi gigroskopiklik — namlikni yaxshi singdiradi</li><li>Tabiiy tolalardan tayyorlangan — allergiya keltirmaydi</li><li>Issiq havoda foydalanish uchun qulay. Yumshoq va muloyim seziladi</li><li>Oson parvarish — uy sharoitida yuvishga ruxsat beradi</li></ul>",
   "yarnTitle": "Iplar",
@@ -62,5 +62,5 @@
   "countryName": "O‘zbekiston",
   "printedFabric": "Bosma mato",
   "infoblock4": "<h2>Bir rangli bo‘yash</h2><span> Ishlab chiqarish jarayonimizda biz professional jiggirlar yordamida <strong>bir rangli bo‘yash</strong> xizmatini ham taklif etamiz. Oyiga <strong>150 000 metr to‘qimalarni bo‘yash</strong> hajmimiz mavjud bo‘lib, standart va individual buyurtmalarni tezkor bajarish imkonini beradi.</span><br/><br/><ul> <li>Bir xilda va uzoq muddat saqlanadigan bo‘yash</li> <li>Ranglarning keng tanlovi (jumladan Pantone bo‘yicha ham)</li> <li>Yuvish va quyosh nurlariga chidamlilik</li> <li>Ekologik toza bo‘yoqlar</li></ul>",
-  "infoblock5": "<h2>Mato bosib chiqarish</h2><span> OSIYO HOME TEX ilg‘or rotatsion bosib chiqarish uskunalaridan foydalanib, yuqori sifatli mato bosib chiqarishni taklif etadi. Ishlab chiqarish liniyamiz oyiga <strong>800 000 metr bosilgan mato</strong> hajmiga ega bo‘lib, <strong>bir vaqtda 12 tagacha rang ishlatiladi</strong>.</span> <br/><br/><ul> <li>Aniq va rang o‘zgarishiga chidamli bosmalar</li> <li>Boy va yorqin ranglar palitrasi</li> <li>Bosilgan naqshlarning uzoq muddat chidamliligi</li> <li>Buyurtma asosida individual dizaynlar</li></ul> <br/><br/><span>Bosib chiqarish poplin, ranfors, satin va byaz matolarida amalga oshiriladi.</span>"
+  "infoblock5": "<h2>Mato bosib chiqarish</h2><span> OSIYO HOME TEX ilg‘or rotatsion bosib chiqarish uskunalaridan foydalanib, yuqori sifatli mato bosib chiqarishni taklif etadi. Ishlab chiqarish liniyamiz oyiga <strong>1,000 000 metr bosilgan mato</strong> hajmiga ega bo‘lib, <strong>bir vaqtda 12 tagacha rang ishlatiladi</strong>.</span> <br/><br/><ul> <li>Aniq va rang o‘zgarishiga chidamli bosmalar</li> <li>Boy va yorqin ranglar palitrasi</li> <li>Bosilgan naqshlarning uzoq muddat chidamliligi</li> <li>Buyurtma asosida individual dizaynlar</li></ul> <br/><br/><span>Bosib chiqarish poplin, ranfors, satin va byaz matolarida amalga oshiriladi.</span>"
 }

@@ -69,6 +69,10 @@ export const CatalogItem = () => {
 
       {opened && (
         <div className={styles.item_opened}>
+          <span
+            className={styles.item_opened_close}
+            onClick={() => setOpened(false)}
+          ></span>
           <button onClick={() => setOpened(false)}>
             <CgClose />
           </button>

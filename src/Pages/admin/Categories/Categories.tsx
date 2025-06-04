@@ -3,7 +3,7 @@ import styles from "./Categoies.module.scss";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Loader } from "../../../widgets/Loader/Loader";
-import { BiImage } from "react-icons/bi";
+import { BiImage, BiRefresh } from "react-icons/bi";
 
 export const AdminCategories = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,17 @@ export const AdminCategories = () => {
     <div className={styles.categories}>
       {loading && <Loader />}
       <div className={styles.categories_top}>
-        <h1>Категории</h1>
+        <h1
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            cursor: "pointer",
+          }}
+          onClick={() => refresh()}
+        >
+          Категории <BiRefresh />
+        </h1>
         <section>
           <select name="type" id="" onChange={(e) => setType(e.target.value)}>
             <option value="0">Ткани</option>

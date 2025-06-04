@@ -3,7 +3,7 @@ import styles from "./Items.module.scss";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Loader } from "../../../widgets/Loader/Loader";
-import { BiImage } from "react-icons/bi";
+import { BiImage, BiRefresh } from "react-icons/bi";
 
 export const AdminItems = () => {
   const [article, setArticle] = useState("");
@@ -48,7 +48,17 @@ export const AdminItems = () => {
     <div className={styles.items}>
       {loading && <Loader />}
       <div className={styles.items_top}>
-        <h1>Товары</h1>
+        <h1
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            cursor: "pointer",
+          }}
+          onClick={() => refresh()}
+        >
+          Товары <BiRefresh />
+        </h1>
         <section>
           <input
             type="text"
