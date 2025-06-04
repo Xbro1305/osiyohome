@@ -138,7 +138,7 @@ export const CatalogItem = () => {
                 {t("productName")} {item.name}
               </h1>
               <h2>
-                {t("bedroomsCount")} {item.size}
+                {t("bedroomsCount")} {t(item.size)}
               </h2>
               <h2>
                 {t("pillowcaseSize")}
@@ -153,7 +153,7 @@ export const CatalogItem = () => {
                 {t("duvetCoverSize")} {item.duvetCoverSize}
               </h2>
               <h2>
-                {t("material")} {item?.cloth}
+                {t("material")} {t(item?.cloth)}
               </h2>
               <h2>
                 {t("countryOfOrigin")} {t("countryName")}

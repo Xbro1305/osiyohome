@@ -62,5 +62,13 @@
   "countryName": "O‘zbekiston",
   "printedFabric": "Bosma mato",
   "infoblock4": "<h2>Bir rangli bo‘yash</h2><span> Ishlab chiqarish jarayonimizda biz professional jiggirlar yordamida <strong>bir rangli bo‘yash</strong> xizmatini ham taklif etamiz. Oyiga <strong>150 000 metr to‘qimalarni bo‘yash</strong> hajmimiz mavjud bo‘lib, standart va individual buyurtmalarni tezkor bajarish imkonini beradi.</span><br/><br/><ul> <li>Bir xilda va uzoq muddat saqlanadigan bo‘yash</li> <li>Ranglarning keng tanlovi (jumladan Pantone bo‘yicha ham)</li> <li>Yuvish va quyosh nurlariga chidamlilik</li> <li>Ekologik toza bo‘yoqlar</li></ul>",
-  "infoblock5": "<h2>Mato bosib chiqarish</h2><span> OSIYO HOME TEX ilg‘or rotatsion bosib chiqarish uskunalaridan foydalanib, yuqori sifatli mato bosib chiqarishni taklif etadi. Ishlab chiqarish liniyamiz oyiga <strong>1,000 000 metr bosilgan mato</strong> hajmiga ega bo‘lib, <strong>bir vaqtda 12 tagacha rang ishlatiladi</strong>.</span> <br/><br/><ul> <li>Aniq va rang o‘zgarishiga chidamli bosmalar</li> <li>Boy va yorqin ranglar palitrasi</li> <li>Bosilgan naqshlarning uzoq muddat chidamliligi</li> <li>Buyurtma asosida individual dizaynlar</li></ul> <br/><br/><span>Bosib chiqarish poplin, ranfors, satin va byaz matolarida amalga oshiriladi.</span>"
+  "infoblock5": "<h2>Mato bosib chiqarish</h2><span> OSIYO HOME TEX ilg‘or rotatsion bosib chiqarish uskunalaridan foydalanib, yuqori sifatli mato bosib chiqarishni taklif etadi. Ishlab chiqarish liniyamiz oyiga <strong>1,000 000 metr bosilgan mato</strong> hajmiga ega bo‘lib, <strong>bir vaqtda 12 tagacha rang ishlatiladi</strong>.</span> <br/><br/><ul> <li>Aniq va rang o‘zgarishiga chidamli bosmalar</li> <li>Boy va yorqin ranglar palitrasi</li> <li>Bosilgan naqshlarning uzoq muddat chidamliligi</li> <li>Buyurtma asosida individual dizaynlar</li></ul> <br/><br/><span>Bosib chiqarish poplin, ranfors, satin va byaz matolarida amalga oshiriladi.</span>",
+  "Поплин": "Poplin",
+  "Сатин": "Satin",
+  "Бязь": "Byaz",
+  "Страйп-сатин": "Strayp-satin",
+  "solidDyed": "Silliq bo‘yalgan",
+  "digitalPrinting": "Raqamli bosma",
+  "Ранфорс": "Ranfors",
+  "Евро": "Yevro"
 }
