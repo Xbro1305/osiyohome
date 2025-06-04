@@ -64,7 +64,7 @@ export const Carousel = ({ items }: { items: any }) => {
               {item.img && (
                 <img
                   loading="lazy"
-                  src={`${import.meta.env.VITE_APP_API_URL}${item?.img[0]}`}
+                  src={`${import.meta.env.VITE_APP_API_URL}/${item?.img[0]}`}
                   alt={`Item ${item.article}`}
                 />
               )}
