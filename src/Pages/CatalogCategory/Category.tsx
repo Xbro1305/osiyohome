@@ -78,7 +78,7 @@ export const CatalogCategory = () => {
             className={`${styles.category_item} `}
           >
             <img
-              src={`${import.meta.env.VITE_APP_API_URL}${item?.img[0]}`}
+              src={`${import.meta.env.VITE_APP_API_URL}/public${item?.img[0]}`}
               alt={`${t("article")}: ${item.article}`}
               className="element-animation"
               loading="lazy"

@@ -77,7 +77,7 @@ export const CatalogItem = () => {
             <CgClose />
           </button>
           <img
-            src={`${import.meta.env.VITE_APP_API_URL}${
+            src={`${import.meta.env.VITE_APP_API_URL}/public${
               item?.img[Number(opened)]
             }`}
             alt=""
@@ -90,7 +90,7 @@ export const CatalogItem = () => {
                   opened != `${index}` ? styles.item_opened_image_inactive : ""
                 }
                 key={index}
-                src={`${import.meta.env.VITE_APP_API_URL}${image}`}
+                src={`${import.meta.env.VITE_APP_API_URL}/public${image}`}
                 alt={`Item ${item.article}`}
               />
             ))}
@@ -126,7 +126,7 @@ export const CatalogItem = () => {
               onClick={() => setOpened(`${index}`)}
               className={`element-animation  ${styles.item_image}`}
               key={index}
-              src={`${import.meta.env.VITE_APP_API_URL}${image}`}
+              src={`${import.meta.env.VITE_APP_API_URL}/public${image}`}
               alt={`Item ${item.art}`}
             />
           ))}
