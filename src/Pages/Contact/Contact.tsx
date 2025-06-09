@@ -124,8 +124,8 @@ export const Contact = () => {
             <Link target="_blank" to="https://t.me/OsiyoHomeTex1">
               <FaTelegramPlane /> @OsiyoHomeTex1
             </Link>
-            <Link target="_blank" to="https://www.instagram.com/osiyo_hometex/">
-              <BsInstagram /> @osiyo_hometex
+            <Link target="_blank" to="https://www.instagram.com/osiyohometex/">
+              <BsInstagram /> @osiyohometex
             </Link>
             <Link target="_blank" to="https://youtube.com/@Osiyohome">
               <BsYoutube />
