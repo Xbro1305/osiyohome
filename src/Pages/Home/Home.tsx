@@ -421,7 +421,7 @@ export const Home = () => {
           </section>
           <section className="element-animation eb">
             <span> {t("developer")} Akhmadjon Sharifov</span>
-            <Link className="element-animation eb" to="https://t.me/sh4rifoff">
+            <Link to="https://t.me/sh4rifoff">
               <FaTelegramPlane /> @Sh4rifoff
             </Link>
             <Link to="https://ahmadjonsportfolio.vercel.app">
@@ -436,7 +436,6 @@ export const Home = () => {
           className="element-animation eb"
           src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6023.930386428343!2d71.606341!3d40.982243!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDU4JzU2LjEiTiA3McKwMzYnMjIuOCJF!5e0!3m2!1sru!2sus!4v1748340661772!5m2!1sru!2sus"
           width="600"
-          height="450"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

@@ -1,4 +1,4 @@
-import { BiPhone } from "react-icons/bi";
+import { BiGlobe, BiPhone } from "react-icons/bi";
 import { BsInstagram, BsYoutube } from "react-icons/bs";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
@@ -98,7 +98,7 @@ export const Contact = () => {
       </form>
       <div className={styles.contacts}>
         <div className={styles.contacts_left}>
-          <h1 className={`element-animation ${styles.contacts_title}`}>
+          <h1 className={`element-animation ${styles.title}`}>
             {t("contacts")}
           </h1>
           <p className="element-animation el">
@@ -135,6 +135,15 @@ export const Contact = () => {
               <TfiEmail /> osiyotex@gmail.com
             </Link>
           </section>
+          <section className="element-animation eb">
+            <span> {t("developer")} Akhmadjon Sharifov</span>
+            <Link to="https://t.me/sh4rifoff">
+              <FaTelegramPlane /> @Sh4rifoff
+            </Link>
+            <Link to="https://ahmadjonsportfolio.vercel.app">
+              <BiGlobe /> ahmadjonsportfolio.vercel.app
+            </Link>
+          </section>
           <p className="element-animation eb">
             © 2017–{new Date().getFullYear()}, {t("companyName")}
           </p>
@@ -143,7 +152,6 @@ export const Contact = () => {
           className="element-animation eb"
           src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6023.930386428343!2d71.606341!3d40.982243!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDU4JzU2LjEiTiA3McKwMzYnMjIuOCJF!5e0!3m2!1sru!2sus!4v1748340661772!5m2!1sru!2sus"
           width="600"
-          height="450"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
