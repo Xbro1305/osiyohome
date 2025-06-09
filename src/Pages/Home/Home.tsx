@@ -422,7 +422,7 @@ export const Home = () => {
           <p className="element-animation eb">
             © 2017–{new Date().getFullYear()}, {t("companyName")}
           </p>
-          <Link to="https://t.me/sh4rifoff">
+          <Link className="element-animation eb" to="https://t.me/sh4rifoff">
             {t("developer")} Akhmadjon Sharifov
           </Link>
         </div>
