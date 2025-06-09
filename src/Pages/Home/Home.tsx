@@ -12,7 +12,7 @@ import { BsClock, BsInstagram, BsYoutube } from "react-icons/bs";
 import { RxCheck } from "react-icons/rx";
 import { FiTruck } from "react-icons/fi";
 import { MdLocationPin } from "react-icons/md";
-import { BiPhone } from "react-icons/bi";
+import { BiGlobe, BiPhone } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import axios from "axios";
 import { Loader } from "../../widgets/Loader/Loader";
@@ -419,12 +419,18 @@ export const Home = () => {
               <TfiEmail /> osiyotex@gmail.com
             </Link>
           </section>
+          <section className="element-animation eb">
+            <span> {t("developer")} Akhmadjon Sharifov</span>
+            <Link className="element-animation eb" to="https://t.me/sh4rifoff">
+              <FaTelegramPlane /> @Sh4rifoff
+            </Link>
+            <Link to="https://ahmadjonsportfolio.vercel.app">
+              <BiGlobe /> ahmadjonsportfolio.vercel.app
+            </Link>
+          </section>
           <p className="element-animation eb">
             © 2017–{new Date().getFullYear()}, {t("companyName")}
           </p>
-          <Link className="element-animation eb" to="https://t.me/sh4rifoff">
-            {t("developer")} Akhmadjon Sharifov
-          </Link>
         </div>
         <iframe
           className="element-animation eb"
