@@ -77,6 +77,8 @@
     gap: 30px;
     margin-top: 20px;
     padding: var(--top-padding) var(--sides-padding);
+    width: 100%;
+    overflow-x: hidden;
 
     &_carousel {
       overflow: visible;
