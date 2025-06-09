@@ -405,26 +405,26 @@ export const Home = () => {
           </section>
           <section className="element-animation eb">
             <span>{t("socialMedia")}</span>
-            <Link to="https://t.me/OsiyoHomeTex1" target="_blank">
+            <Link target="_blank" to="https://t.me/OsiyoHomeTex1">
               <FaTelegramPlane /> @OsiyoHomeTex1
             </Link>
-            <Link to="https://www.instagram.com/osiyo_hometex/" target="_blank">
+            <Link target="_blank" to="https://www.instagram.com/osiyo_hometex/">
               <BsInstagram /> @osiyo_hometex
             </Link>
-            <Link to="https://youtube.com/@Osiyohome">
+            <Link target="_blank" to="https://youtube.com/@Osiyohome">
               <BsYoutube />
               @Osiyohome
             </Link>
-            <Link to="mailto:osiyotex@gmail.com">
+            <Link target="_blank" to="mailto:osiyotex@gmail.com">
               <TfiEmail /> osiyotex@gmail.com
             </Link>
           </section>
           <section className="element-animation eb">
             <span> {t("developer")} Akhmadjon Sharifov</span>
-            <Link to="https://t.me/sh4rifoff">
+            <Link target="_blank" to="https://t.me/sh4rifoff">
               <FaTelegramPlane /> @Sh4rifoff
             </Link>
-            <Link to="https://ahmadjonsportfolio.vercel.app">
+            <Link target="_blank" to="https://ahmadjonsportfolio.vercel.app">
               <BiGlobe /> ahmadjonsportfolio.vercel.app
             </Link>
           </section>
