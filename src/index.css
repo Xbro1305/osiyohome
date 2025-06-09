@@ -13,12 +13,12 @@
 
 body {
   font-family: "Bahnschrift", sans-serif;
-  width: 100%;
+  width: 100vw;
   overflow-x: hidden;
 }
 
 .root {
-  width: 100%;
+  width: 100vw;
   overflow-x: hidden;
 }
 
