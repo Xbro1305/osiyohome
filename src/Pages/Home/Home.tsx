@@ -18,6 +18,18 @@ import axios from "axios";
 import { Loader } from "../../widgets/Loader/Loader";
 import { useTranslation } from "react-i18next";
 import { runIntersectionAnimation } from "../../widgets/Animation";
+import andin from "../../assets/clients/andin.jpg";
+import galtex from "../../assets/clients/galtex.jpg";
+import mirposuda from "../../assets/clients/mirposuda.jpg";
+import ntk from "../../assets/clients/ntk.jpg";
+import polese from "../../assets/clients/polese.jpg";
+import protex from "../../assets/clients/protex.jpg";
+import tdl from "../../assets/clients/tdl.jpg";
+import valiant from "../../assets/clients/valiant.jpg";
+import vivamix from "../../assets/clients/vivamix.jpg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 export const Home = () => {
   const [news, setNews] = useState([]);
@@ -378,6 +390,56 @@ export const Home = () => {
               <img src={infoblock1} alt="" />
             </div>
           )}
+        </div>
+      </div>
+      <div className={styles.home_clients}>
+        <h1 className={`element-animation el ${styles.home_title}`}>
+          {t("clients")}
+        </h1>
+        <div className={`element-animation eb ${styles.home_clients_content}`}>
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            autoplay={{
+              delay: 500,
+              disableOnInteraction: false,
+            }}
+            speed={1000}
+            spaceBetween={20}
+            slidesPerView="auto"
+          >
+            {[
+              andin,
+              galtex,
+              mirposuda,
+              ntk,
+              polese,
+              protex,
+              tdl,
+              valiant,
+              vivamix,
+            ].map((src, index) => (
+              <SwiperSlide
+                key={index}
+                style={{
+                  height: "70px",
+                  width: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src={src}
+                  alt={`client-${index}`}
+                  style={{
+                    height: "100%",
+                    width: "auto",
+                    objectFit: "contain",
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
       <div className={styles.home_contacts}>

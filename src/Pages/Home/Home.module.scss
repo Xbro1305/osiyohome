@@ -353,6 +353,14 @@
     }
   }
 
+  &_clients {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 50px;
+    padding: var(--top-padding) var(--sides-padding);
+  }
+
   &_contacts {
     display: flex;
     margin-top: 20px;
@@ -408,5 +416,18 @@
         aspect-ratio: 16/9;
       }
     }
+  }
+}
+
+@keyframes clients {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
