@@ -25,7 +25,8 @@ import ntk from "../../assets/clients/ntk.png";
 import polese from "../../assets/clients/polese.jpg";
 import protex from "../../assets/clients/protex.jpg";
 import tdl from "../../assets/clients/tdl.jpg";
-import valiant from "../../assets/clients/valiant.jpg";
+import valiant from "../../assets/clients/valiant.png";
+import loveberry from "../../assets/clients/loveberry.jpg";
 import vivamix from "../../assets/clients/vivamix.jpg";
 import sert1 from "../../assets/Screenshot 2025-06-12 at 10.14.45 AM.png";
 import sert2 from "../../assets/Screenshot 2025-06-12 at 10.15.11 AM.png";
@@ -426,6 +427,7 @@ export const Home = () => {
           >
             {[
               andin,
+              loveberry,
               galtex,
               mirposuda,
               ntk,
