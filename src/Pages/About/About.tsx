@@ -14,6 +14,8 @@ import { BiGlobe, BiPhone } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import { BsInstagram, BsYoutube } from "react-icons/bs";
 import { MdLocationPin } from "react-icons/md";
+import sert1 from "../../assets/Screenshot 2025-06-12 at 10.14.45 AM.png";
+import sert2 from "../../assets/Screenshot 2025-06-12 at 10.15.11 AM.png";
 
 export const About = () => {
   const { t } = useTranslation();
@@ -98,6 +100,20 @@ export const About = () => {
             dangerouslySetInnerHTML={{ __html: t("infoblock5") }}
           />
           <img className="element-animation el" src={infoblock5} alt="" />
+        </div>
+      </div>
+      <div className={styles.about_sertificate}>
+        <h1 className={styles.title}>{t("sertificates")}</h1>
+
+        <div className={styles.about_sertificate_content}>
+          <p
+            className={styles.about_sertificate_right}
+            dangerouslySetInnerHTML={{ __html: t("sertContent") }}
+          />
+          <div className={styles.about_sertificate_left}>
+            <img src={sert1} alt="" />
+            <img src={sert2} alt="" />
+          </div>
         </div>
       </div>
       <div className={styles.contacts}>

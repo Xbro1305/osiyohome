@@ -353,6 +353,39 @@
     }
   }
 
+  &_sertificate {
+    padding: var(--top-padding) var(--sides-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    &_content {
+      display: grid;
+      grid-template-columns: repeat(2, calc(50% - 10px));
+      gap: 20px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+
+    &_left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      img {
+        width: calc(100% / 2 - 10px);
+      }
+    }
+
+    &_right {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
   &_clients {
     display: flex;
     flex-direction: column;

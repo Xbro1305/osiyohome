@@ -27,6 +27,8 @@ import protex from "../../assets/clients/protex.jpg";
 import tdl from "../../assets/clients/tdl.jpg";
 import valiant from "../../assets/clients/valiant.jpg";
 import vivamix from "../../assets/clients/vivamix.jpg";
+import sert1 from "../../assets/Screenshot 2025-06-12 at 10.14.45 AM.png";
+import sert2 from "../../assets/Screenshot 2025-06-12 at 10.15.11 AM.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -390,6 +392,20 @@ export const Home = () => {
               <img src={infoblock1} alt="" />
             </div>
           )}
+        </div>
+      </div>
+      <div className={styles.home_sertificate}>
+        <h1 className={styles.title}>{t("sertificates")}</h1>
+
+        <div className={styles.home_sertificate_content}>
+          <div className={styles.home_sertificate_left}>
+            <img src={sert1} alt="" />
+            <img src={sert2} alt="" />
+          </div>
+          <div
+            className={styles.home_sertificate_right}
+            dangerouslySetInnerHTML={{ __html: t("sertContent") }}
+          />
         </div>
       </div>
       <div className={styles.home_clients}>
