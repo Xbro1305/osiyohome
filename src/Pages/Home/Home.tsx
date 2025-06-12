@@ -18,10 +18,10 @@ import axios from "axios";
 import { Loader } from "../../widgets/Loader/Loader";
 import { useTranslation } from "react-i18next";
 import { runIntersectionAnimation } from "../../widgets/Animation";
-import andin from "../../assets/clients/andin.jpg";
-import galtex from "../../assets/clients/galtex.jpg";
+import andin from "../../assets/clients/andin.png";
+import galtex from "../../assets/clients/galtex.jpeg";
 import mirposuda from "../../assets/clients/mirposuda.jpg";
-import ntk from "../../assets/clients/ntk.jpg";
+import ntk from "../../assets/clients/ntk.png";
 import polese from "../../assets/clients/polese.jpg";
 import protex from "../../assets/clients/protex.jpg";
 import tdl from "../../assets/clients/tdl.jpg";
@@ -405,7 +405,7 @@ export const Home = () => {
               disableOnInteraction: false,
             }}
             speed={1000}
-            spaceBetween={20}
+            spaceBetween={50}
             slidesPerView="auto"
           >
             {[
