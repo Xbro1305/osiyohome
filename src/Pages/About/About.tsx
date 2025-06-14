@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { runIntersectionAnimation } from "../../widgets/Animation";
 import { Link } from "react-router-dom";
 import { FaTelegramPlane } from "react-icons/fa";
-import { BiGlobe, BiPhone } from "react-icons/bi";
+import { BiPhone } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import { BsInstagram, BsYoutube } from "react-icons/bs";
 import { MdLocationPin } from "react-icons/md";

@@ -12,7 +12,7 @@ import { BsClock, BsInstagram, BsYoutube } from "react-icons/bs";
 import { RxCheck } from "react-icons/rx";
 import { FiTruck } from "react-icons/fi";
 import { MdLocationPin } from "react-icons/md";
-import { BiGlobe, BiPhone } from "react-icons/bi";
+import { BiPhone } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import axios from "axios";
 import { Loader } from "../../widgets/Loader/Loader";
@@ -30,9 +30,6 @@ import loveberry from "../../assets/clients/loveberry.jpg";
 import vivamix from "../../assets/clients/vivamix.jpg";
 import sert1 from "../../assets/Screenshot 2025-06-12 at 10.14.45 AM.png";
 import sert2 from "../../assets/Screenshot 2025-06-12 at 10.15.11 AM.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
 
 export const Home = () => {
   const [news, setNews] = useState([]);

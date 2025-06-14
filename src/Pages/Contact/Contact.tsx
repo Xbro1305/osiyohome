@@ -1,4 +1,4 @@
-import { BiGlobe, BiPhone } from "react-icons/bi";
+import { BiPhone } from "react-icons/bi";
 import { BsInstagram, BsYoutube } from "react-icons/bs";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
