@@ -465,3 +465,35 @@
     transform: translateX(0);
   }
 }
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+
+  &__inner {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+
+  &__item {
+    font-size: 18px;
+    height: 70px;
+    object-fit: contain;
+    color: #555;
+    margin: 0 30px;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

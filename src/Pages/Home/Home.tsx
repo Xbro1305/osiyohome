@@ -41,6 +41,19 @@ export const Home = () => {
   const [adv, setAdv] = useState<0 | 1 | 2 | 3 | 4>(1);
   const { t } = useTranslation();
 
+  const brands = [
+    andin,
+    loveberry,
+    galtex,
+    mirposuda,
+    ntk,
+    polese,
+    protex,
+    tdl,
+    valiant,
+    vivamix,
+  ];
+
   useEffect(() => {
     axios(`${import.meta.env.VITE_APP_API_URL}/products?type=0&length=10`)
       .then((res) => setNews(res.data.innerData))
@@ -413,51 +426,12 @@ export const Home = () => {
         <h1 className={`element-animation el ${styles.home_title}`}>
           {t("clients")}
         </h1>
-        <div className={`element-animation eb ${styles.home_clients_content}`}>
-          <Swiper
-            modules={[Autoplay]}
-            loop={true}
-            autoplay={{
-              delay: 500,
-              disableOnInteraction: false,
-            }}
-            speed={1000}
-            spaceBetween={50}
-            slidesPerView="auto"
-          >
-            {[
-              andin,
-              loveberry,
-              galtex,
-              mirposuda,
-              ntk,
-              polese,
-              protex,
-              tdl,
-              valiant,
-              vivamix,
-            ].map((src, index) => (
-              <SwiperSlide
-                key={index}
-                style={{
-                  height: "70px",
-                  width: "auto",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <img
-                  src={src}
-                  alt={`client-${index}`}
-                  style={{
-                    height: "100%",
-                    width: "auto",
-                    objectFit: "contain",
-                  }}
-                />
-              </SwiperSlide>
+        <div className={`element-animation eb ${styles.marquee}`}>
+          <div className={styles.marquee__inner}>
+            {[...brands, ...brands].map((brand, idx) => (
+              <img src={brand} className={styles.marquee__item} alt="" />
             ))}
-          </Swiper>
+          </div>
         </div>
       </div>
       <div className={styles.home_contacts}>
@@ -500,13 +474,12 @@ export const Home = () => {
             </Link>
           </section>
           <section className="element-animation eb">
-            <span> {t("developer")} Akhmadjon Sharifov</span>
-            <Link target="_blank" to="https://t.me/sh4rifoff">
-              <FaTelegramPlane /> @Sh4rifoff
-            </Link>
-            <Link target="_blank" to="https://ahmadjonsportfolio.vercel.app">
-              <BiGlobe /> ahmadjonsportfolio.vercel.app
-            </Link>
+            <span>
+              {t("developer")}{" "}
+              <Link target="_blank" to="https://t.me/sh4rifoff">
+                <FaTelegramPlane /> Akhmadjon Sharifov
+              </Link>
+            </span>
           </section>
           <p className="element-animation eb">
             © 2017–{new Date().getFullYear()}, {t("companyName")}

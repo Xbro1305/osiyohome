@@ -136,13 +136,12 @@ export const Contact = () => {
             </Link>
           </section>
           <section className="element-animation eb">
-            <span> {t("developer")} Akhmadjon Sharifov</span>
-            <Link target="_blank" to="https://t.me/sh4rifoff">
-              <FaTelegramPlane /> @Sh4rifoff
-            </Link>
-            <Link target="_blank" to="https://ahmadjonsportfolio.vercel.app">
-              <BiGlobe /> ahmadjonsportfolio.vercel.app
-            </Link>
+            <span>
+              {t("developer")}{" "}
+              <Link target="_blank" to="https://t.me/sh4rifoff">
+                <FaTelegramPlane /> Akhmadjon Sharifov
+              </Link>
+            </span>
           </section>
           <p className="element-animation eb">
             © 2017–{new Date().getFullYear()}, {t("companyName")}
