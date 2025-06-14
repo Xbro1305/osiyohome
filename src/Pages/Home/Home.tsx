@@ -426,7 +426,12 @@ export const Home = () => {
         <div className={`element-animation eb ${styles.marquee}`}>
           <div className={styles.marquee__inner}>
             {[...brands, ...brands].map((brand, idx) => (
-              <img src={brand} className={styles.marquee__item} alt="" />
+              <img
+                src={brand}
+                className={styles.marquee__item}
+                key={idx}
+                alt=""
+              />
             ))}
           </div>
         </div>
