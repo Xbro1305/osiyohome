@@ -406,15 +406,17 @@ export const Home = () => {
         </div>
       </div>
       <div className={styles.home_sertificate}>
-        <h1 className={styles.title}>{t("sertificates")}</h1>
+        <h1 className={`element-animation el ${styles.title}`}>
+          {t("sertificates")}
+        </h1>
 
         <div className={styles.home_sertificate_content}>
           <div className={styles.home_sertificate_left}>
-            <img src={sert1} alt="" />
-            <img src={sert2} alt="" />
+            <img src={sert1} className="element-animation el" alt="" />
+            <img src={sert2} className="element-animation eb" alt="" />
           </div>
           <div
-            className={styles.home_sertificate_right}
+            className={`element-animation er ${styles.home_sertificate_right}`}
             dangerouslySetInnerHTML={{ __html: t("sertContent") }}
           />
         </div>
