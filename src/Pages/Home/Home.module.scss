@@ -393,6 +393,8 @@
     gap: 30px;
     padding-top: 50px;
     padding: var(--top-padding) var(--sides-padding);
+    width: 100vw;
+    overflow: hidden;
   }
 
   &_contacts {
